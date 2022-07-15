@@ -1,75 +1,164 @@
 /*
-*/
+ */
 
-let articulos = [];
+let nuevoProducto;
+let nuevoPrograma;
+let id;
+let nombre;
+let precio;
+let categoria;
+let resultadoProductos;
+let inicioCarga;
+let byeProducto;
+let findProducto;
+let otraAccion;
+let otraAccion2;
+let resultadoBusqueda;
+let encontrado;
+let resultadoBusqueda1;
 
-const agregarProducto = () => {
-  for (let i = 0; i < 3; i++) {
-    let producto = prompt("Ingrese el producto a cargar");
-    if (producto == "") {
-      alert("No has ingresado ningun producto");
-    } else {
-      articulos.push(producto);
-    }
-  }
-};
+let productos = [];
+let categorias = ["Entrantes", "Plato principal", "Postres"];
 
-const verProductos = () => {
-  if (articulos.length == 0) {
-    return alert("Agrega algo por favor");
-  } else {
-    return alert("los productos ingresados son: " + articulos);
-  }
-};
-
-agregarProducto();
-console.log(articulos);
-verProductos();
-
-// Desafio complementario Arrays
-
-const tipoDePlato = ["Entrantes", "Plato Principal", "Postres"];
-class Plato {
+class Productos {
   constructor(id, nombre, precio, categoria) {
-    this.id = parseInt(id);
+    this.id = id;
     this.nombre = nombre;
-    this.precio = parseFloat(precio);
+    this.precio = precio;
     this.categoria = categoria;
   }
 }
 
-let cantidadPlatos = prompt("Cuantos platos desea cargar?");
+const agregarProducto = () => {
+  for (let i = 0; i < 1; i++) {
+    id = parseInt(prompt("Ingrese el ID del producto"));
+    nombre = prompt("Ingrese el nombre del producto");
+    precio = parseFloat(prompt("Ingrese el precio del producto"));
+    categoria = prompt(
+      `Ingrese la categoria del producto; \n Presione: \n 1) Entrantes \n 2) Plato principal \n 3) Postres`
+    );
+    if (categoria === "1") {
+      resultadoProductos = new Productos(id, nombre, precio, categorias[0]);
+    } else if (categoria === "2") {
+      resultadoProductos = new Productos(id, nombre, precio, categorias[1]);
+    } else if (categoria === "3") {
+      resultadoProductos = new Productos(id, nombre, precio, categorias[2]);
+    } else {
+      alert("Has ingresado datos erroneos!");
+    }
+    productos[i] = resultadoProductos;
+  }
+};
 
-for (let i = 0; i < cantidadPlatos; i++) {
-  let id = prompt("Cual es el ID del nuevo plato?");
-  let nombre = prompt("Cual es el nombre del plato?");
-  let precio = prompt("Cual es el precio del plato?");
-  let categoria = prompt(
-    "Seleccione el numero de la categoria del plato: " +
-      "\n" +
-      "1) Entrantes 2) Plato principal 3) Postre "
+const visualizarProducto = () => {
+  for (let i = 0; i < productos.length; i++) {
+    alert(
+      `El nombre del producto es: ${productos[i].nombre}. \n El ID es: ${productos[i].id} \n El precio es: ${productos[i].precio} \n La categoria del producto es: ${productos[i].categoria} `
+    );
+  }
+};
+
+// const buscarProducto = () => {
+//   findProducto = prompt("Que producto desea buscar?");
+// for (let i = 0; i < productos.length; i++) {
+//   if (findProducto == productos[i].nombre) {
+//     return alert(
+//       `El nombre del producto es: ${productos[i].nombre}. \n El ID es: ${productos[i].id} \n El precio es: ${productos[i].precio} \n La categoria del producto es: ${productos[i].categoria} `
+//       );
+//     }
+//   }
+//   return alert('El producto no existe')
+// };
+
+const buscarProducto = (valor) => {
+  if (valor == "") {
+    return alert("No ingresaste nada");
+  }
+  resultadoBusqueda = productos.find((x) => x.nombre == valor);
+  if (resultadoBusqueda === undefined) {
+    return alert(`El plato no existe`);
+  }
+  return alert(
+    `El nombre del producto es: ${resultadoBusqueda.nombre}. \n El ID es: ${resultadoBusqueda.id} \n El precio es: ${resultadoBusqueda.precio} \n La categoria del producto es: ${resultadoBusqueda.categoria}`
   );
-  let plato = new Plato(id, nombre, precio, categoria);
-  articulos[i] = plato;
-}
+};
 
-console.log(articulos);
-
-for (const x of articulos) {
-  
-  alert(
-    `Producto Nro: ${x.id} Nombre del producto: ${x.nombre}`
-    // "Producto Nro: " +
-    //   objeto.id +
-    //   "\n" +
-    //   "Nombre: " +
-    //   objeto.nombre +
-    //   "\n" +
-    //   "Precio del producto:" +
-    //   objeto.precio
+const iniciarPrograma = () => {
+  nuevoPrograma = prompt(
+    `Bienvenidos a Rizla soluciones sistematicas. \n Que función desea realizar? \n 1) Agregar un producto \n 2) Visualizar los productos cargados\n 3) Eliminar productos \n 4) Buscar un producto especifico \n \n Escriba "salir" para terminar el programa`
   );
-}
+  if (nuevoPrograma == "ESC") {
+    alert("Has seleccionado salir");
+    iniciarPrograma();
+  } else {
+    switch (nuevoPrograma) {
+      case "1":
+        agregarProducto();
+        let otraAccion = prompt(
+          `Desea realizar otra accion? \n Presione 1 para volver al menu. \n Presione 2 para visualisar los productos \n Presione 3 para salir`
+        );
+        switch (otraAccion) {
+          case "1":
+            iniciarPrograma();
+            break;
+          case "2":
+            visualizarProducto();
+            iniciarPrograma();
+            break;
+          case "3":
+            break;
+        }
+        break;
+      case "2":
+        if (productos.length == 0) {
+          alert("No agregaste nada capo");
+          iniciarPrograma();
+        } else {
+          visualizarProducto();
+          let otraAccion2 = prompt(
+            `Desea realizar otra accion? \n Presione 1 para volver al menu. \n Presione 2 para salir`
+          );
+          switch (otraAccion2) {
+            case "1":
+              iniciarPrograma();
+              break;
+            case "2":
+              break;
+          }
+        }
+        break;
+      case "3":
+        if (productos.length == 0) {
+          alert("No hay nada agregado, que queres eliminar?? salame");
+          iniciarPrograma();
+        } else {
+          eliminarProducto();
+        }
+        break;
+      case "4":
+        if (productos.length == 0) {
+          alert("Que queres buscar si no hay nada agregado, gato");
+          iniciarPrograma();
+        } else {
+          findProducto = prompt("Que producto desea buscar?");
+          buscarProducto(findProducto);
+          iniciarPrograma();
+        }
+        break;
+      case "salir":
+        break;
+      default:
+        alert(
+          "Tenes que ingresar los numeros que te pide el programa, no seas molesto"
+        );
+        iniciarPrograma();
+        break;
+    }
+  }
+};
 
+iniciarPrograma();
+console.log(productos);
 
 // Tarjetas cards del menu
 
@@ -148,5 +237,3 @@ for (const x of menu) {
 
 nuevoDiv.setAttribute("id", "cards");
 console.log(nuevoDiv.children);
-
-
