@@ -16,6 +16,8 @@ let otraAccion2;
 let resultadoBusqueda;
 let encontrado;
 let resultadoBusqueda1;
+let eliminado;
+let productoEliminado;
 
 let productos = [];
 let categorias = ["Entrantes", "Plato principal", "Postres"];
@@ -30,7 +32,7 @@ class Productos {
 }
 
 const agregarProducto = () => {
-  for (let i = 0; i < 1; i++) {
+  for (let i = 0; i < 2; i++) {
     id = parseInt(prompt("Ingrese el ID del producto"));
     nombre = prompt("Ingrese el nombre del producto");
     precio = parseFloat(prompt("Ingrese el precio del producto"));
@@ -58,6 +60,19 @@ const visualizarProducto = () => {
   }
 };
 
+// Todavia no me sale bien
+const eliminarProducto = (eliminado) => {
+  if (eliminado == "") {
+    alert("No ingresaste nada")
+  } productoEliminado = productos.filter((x) => x.nombre != eliminado);
+  if (productoEliminado === undefined) {
+    return alert('El producto no existe')
+  }
+  return alert(productos)
+}
+
+
+// OTRA OPCION PARA BUSCAR PRODUCTO
 // const buscarProducto = () => {
 //   findProducto = prompt("Que producto desea buscar?");
 // for (let i = 0; i < productos.length; i++) {
@@ -111,7 +126,7 @@ const iniciarPrograma = () => {
         break;
       case "2":
         if (productos.length == 0) {
-          alert("No agregaste nada capo");
+          alert("No hay ningun producto agregado, no puedes visualizar nada");
           iniciarPrograma();
         } else {
           visualizarProducto();
@@ -129,15 +144,17 @@ const iniciarPrograma = () => {
         break;
       case "3":
         if (productos.length == 0) {
-          alert("No hay nada agregado, que queres eliminar?? salame");
+          alert("No hay ningun producto agregado, no puedes eliminar nada");
           iniciarPrograma();
         } else {
-          eliminarProducto();
+          eliminado = prompt('Que producto desea eliminar?')
+          eliminarProducto(eliminado);
+          iniciarPrograma()
         }
         break;
       case "4":
         if (productos.length == 0) {
-          alert("Que queres buscar si no hay nada agregado, gato");
+          alert("No hay ningun producto agregado, no puedes buscar nada");
           iniciarPrograma();
         } else {
           findProducto = prompt("Que producto desea buscar?");
@@ -149,7 +166,7 @@ const iniciarPrograma = () => {
         break;
       default:
         alert(
-          "Tenes que ingresar los numeros que te pide el programa, no seas molesto"
+          "Tenes que ingresar los numeros que te pide el programa, estoy aprendiendo."
         );
         iniciarPrograma();
         break;
