@@ -1,5 +1,4 @@
 /*
- */
 
 let nuevoProducto;
 let nuevoPrograma;
@@ -19,17 +18,7 @@ let resultadoBusqueda1;
 let eliminado;
 let productoEliminado;
 
-let productos = [];
-let categorias = ["Entrantes", "Plato principal", "Postres"];
 
-class Productos {
-  constructor(id, nombre, precio, categoria) {
-    this.id = id;
-    this.nombre = nombre;
-    this.precio = precio;
-    this.categoria = categoria;
-  }
-}
 
 const agregarProducto = () => {
   for (let i = 0; i < 2; i++) {
@@ -177,6 +166,13 @@ const iniciarPrograma = () => {
 iniciarPrograma();
 console.log(productos);
 
+ */
+
+
+
+/*
+
+
 // Tarjetas cards del menu
 
 const menu = [
@@ -254,3 +250,130 @@ for (const x of menu) {
 
 nuevoDiv.setAttribute("id", "cards");
 console.log(nuevoDiv.children);
+
+ */
+
+// Variables Globales
+
+const revealBtn = document.getElementsByClassName("reveal-btn");
+
+const hiddenContent = document.getElementsByClassName("hidden-content");
+
+function revealContent() {
+  if (hiddenContent[1].classList.contains("reveal-btn")) {
+    hiddenContent[1].classList.remove("reveal-btn");
+  } else {
+    hiddenContent[1].classList.add("reveal-btn");
+  }
+}
+
+revealBtn[1].addEventListener("click", revealContent);
+
+// let miFormulario = document.getElementById('registroProducto')
+
+// miFormulario.onsubmit = (e) => {
+//   e.preventDefault()
+//   console.log(this);
+//   console.log(e.target);
+//   const input = miFormulario.children
+//   console.log(input);
+//   productos.push(new Productos(productos.length+1,input[0].value,input[1].value, input[2].value));
+//   console.log(productos);
+// }
+/*
+
+// Agregar una categoria con la interfaz
+// 1ro creo array categoria, 2do creo variable que llame al boton 3ro creo evento pal boton
+4to creo una funcion que; /tome valores del input /si no esta vacio, pushee al array y lo mande a local storage/ luego vacio el input y vuelvo a llamar a la funcion 
+*/
+
+let categorias = [];
+
+reclamarCategoria();
+
+let botonCategoria = document.getElementById("addCategoria");
+
+botonCategoria.addEventListener("click", agregarCategoria);
+
+function agregarCategoria() {
+  let valor = document.getElementById("textoCategoria").value;
+  if (valor != "") {
+    categorias.push(valor);
+    localStorage.setItem("listaCategorias", categorias);
+  }
+  document.getElementById("textoCategoria").value = "";
+  reclamarCategoria();
+}
+
+function reclamarCategoria() {
+  if ("listaCategorias" in localStorage) {
+    categorias = localStorage.getItem("listaCategorias").split(",");
+
+    let salida = `<option>${categorias.join("</option><option>")}</option>`;
+
+    document.getElementById("categorias").innerHTML = salida;
+  }
+}
+
+// mandar un producto al localstorage y luego agregarlo a un div.
+// 1ro selecciono el div para enviar los productos.
+// 2do creo variable para obtener datos de los inputs
+// creo evento para el boton input
+// creo funcion para; - declaro variable de vaor - pusheo el ar
+
+
+let productos = [];
+// let categorias = ["Entrantes", "Plato principal", "Postres"];
+
+class Productos {
+  constructor(id, nombre, precio, categoria) {
+    this.id = id;
+    this.nombre = nombre;
+    this.precio = precio;
+    this.categoria = categoria;
+  }
+}
+
+//DEFINO UN DIV PARA MOSTRAR LOS PRODUCTOS QUE AGREGAREMOS DE FORMA DINAMICA
+const atribuirProductos = document.getElementById("productosInterfaz");
+
+
+
+//FUNCION PARA GENERAR LA INTERFAZ DINAMICA
+function productosUI(productos) {
+  atribuirProductos.innerHTML = "";
+  for (const x of productos) {
+    let divProducto = document.createElement("div");
+    divProducto.innerHTML =  `<h3> Nombre: ${x.nombre} </h3> 
+    <h4> Precio: ${x.precio}</h4>
+    <button id='${x.id}' class = 'btnCompra'>Comprar</button>`;
+    atribuirProductos.append(divProducto)
+  }
+}
+
+
+//VALIDAMOS SI YA EXISTE LA CLAVE EN EL LOCALSTORAGE
+if ('listaProductos' in localStorage) {
+  const almacenado = JSON.parse(localStorage.getItem('listaProductos'))
+  console.log(almacenado);
+  for (const x of almacenado) {
+    productos.push(new Productos(x.id ,x.nombre, x.precio))
+  }
+  console.log(productos);
+  productosUI()
+}
+
+//OBTENER EL FORMULARIO PARA CREAR PRODUCTOS
+let miFormulario= document.getElementById('registroProducto');
+
+//AGREGAR EVENTO SUBMIT AL FORMULARIO
+miFormulario.onsubmit = (e) => {    
+        e.preventDefault(); 
+        const inputs= miFormulario.children;
+        //INSTANCIAMOS UN OBJETO USANDOS LOS VALUE DE CADA INPUT
+        productos.push(new Productos(productos.length+1,inputs[0].value, inputs[1].value));
+        //ALMACENAMOS EL ARRAY ACTUALIZADO EN EL LOCALSTORAGE (PASANDOLO DESDE OBJETO A JSON)
+        localStorage.setItem('listaProductos',JSON.stringify(productos)); 
+        //LLAMAMOS A LA FUNCION PARA GENERAR LA INTERFAZ
+        productosUI(productos);
+}

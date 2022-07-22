@@ -4,82 +4,124 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Boostrap css link -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
+    <!-- Css link -->
+    <link rel="stylesheet" href="styles.css" />
     <title>Ficha tecnica productos</title>
   </head>
   <body>
     <section class="menu">
       <!-- Titulo -->
       <div class="title">
-        <h2>our menu</h2>
+        <h2>Nuestro Menu</h2>
         <div class="underline"></div>
       </div>
       <!-- Botones de filtro -->
-      <div class="btn-container"></div>
+      <div class="btn-container">
+        <div class="btn-1"><button class="btn">$categorias</button></div>
+        <div class="btn-2"><button class="btn">$categorias</button></div>
+        <div class="btn-3"><button class="btn">$categorias</button></div>
+      </div>
+      <!-- Formulario de practica -->
+      <div id="form">
+        <input type="text" placeholder="Escriba la categoria" id="textoCategoria"/>
+        <button id="addCategoria" class="btn">Add</button>
+        <select id="categorias" ></select>
+        <br>
+        <form id="registroProducto">
+          <input type="text" placeholder="Ingrese el nombre del producto" />
+          <input type="number" placeholder="Precio del producto" />
+          <input type="submit" value="submit" />
+        </form>
+      </div>
+      <!-- Practica: Agregar productios UI -->
+      <div id="productosInterfaz">
+
+      </div>
       <!-- Menu -->
       <div class="section-center">
         <!-- 1er item -->
-        <article class="menu-item">
-          <img src="#" alt="menu item" class="photo" />
-          <div class="item-info">
-            <header>
-              <h4>Hamburguesa completa</h4>
-              <h4 class="precio">$15</h4>
-            </header>
-            <p class="item-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Repudiandae, sint quam. Et reprehenderit fugiat nesciunt inventore
-              laboriosam excepturi! Quo, officia.
-            </p>
-          </div>
-        </article>
-
-        <!-- 2do item -->
-        <article class="menu-item">
-          <img src=".#" alt="menu item" class="foto" />
-          <div class="item-info">
-            <header>
-              <h4>brownie con helado</h4>
-              <h4 class="precio">$15</h4>
-            </header>
-            <p class="item-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Repudiandae, sint quam. Et reprehenderit fugiat nesciunt inventore
-              laboriosam excepturi! Quo, officia.
-            </p>
-          </div>
-        </article>
-
-        <!-- 3er item -->
-        <article class="menu-item">
-          <img src="#" alt="menu item" class="foto" />
+        <div class="menu-item">
+          <img src="./img/burger.jpg" alt="menu item" class="foto" />
           <div class="item-info">
             <header>
               <h4>Papas con cheddar</h4>
               <h4 class="precio">$15</h4>
             </header>
-            <p class="item-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Repudiandae, sint quam. Et reprehenderit fugiat nesciunt inventore
-              laboriosam excepturi! Quo, officia.
-            </p>
+            <button class="reveal-btn">
+              <i class="fa-solid fa-burger icon"></i>
+            </button>
+            <div class="item-text hidden-content">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+              voluptate tempore doloribus mollitia sequi dolore ratione
+              repudiandae cumque qui officiis!
+            </div>
           </div>
-        </article>
+        </div>
+
+        <!-- 2do item -->
+        <div class="menu-item">
+          <img src="./img/brownie.jpg" alt="menu item" class="foto" />
+          <div class="item-info">
+            <header>
+              <h4>Papas con cheddar</h4>
+              <h4 class="precio">$15</h4>
+            </header>
+            <button class="reveal-btn">
+              <i class="fa-solid fa-burger icon"></i>
+            </button>
+            <div class="item-text hidden-content">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+              voluptate tempore doloribus mollitia sequi dolore ratione
+              repudiandae cumque qui officiis!
+            </div>
+          </div>
+        </div>
+
+        <!-- 3er item -->
+        <div class="menu-item">
+          <img src="./img/papas.jpg" alt="menu item" class="foto" />
+          <div class="item-info">
+            <header>
+              <h4>Papas con cheddar</h4>
+              <h4 class="precio">$15</h4>
+            </header>
+            <button class="reveal-btn">
+              <i class="fa-solid fa-burger icon"></i>
+            </button>
+            <div class="item-text hidden-content">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+              voluptate tempore doloribus mollitia sequi dolore ratione
+              repudiandae cumque qui officiis!
+            </div>
+          </div>
+        </div>
+
+        <!-- 4er item -->
+        <div class="menu-item">
+          <img src="./img/papas.jpg" alt="menu item" class="foto" />
+          <div class="item-info">
+            <header>
+              <h4>Papas con cheddar</h4>
+              <h4 class="precio">$15</h4>
+            </header>
+            <button class="reveal-btn">
+              <i class="fa-solid fa-burger icon"></i>
+            </button>
+            <div class="item-text hidden-content">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
+              voluptate tempore doloribus mollitia sequi dolore ratione
+              repudiandae cumque qui officiis!
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <script src="index.js"></script>
-    <!-- Boostrap js link -->
+    <!-- Awesome icons -->
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      src="https://kit.fontawesome.com/0149485272.js"
       crossorigin="anonymous"
     ></script>
+    <script src="index.js"></script>
   </body>
 </html>
