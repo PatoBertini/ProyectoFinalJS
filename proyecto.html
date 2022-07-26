@@ -10,6 +10,38 @@
   </head>
   <body>
     <section class="menu">
+      <!-- Formulario de practica -->
+      <div id="form">
+        <h2>Ingrese la categoria del producto</h2>
+        <input
+          type="text"
+          placeholder="Escriba la categoria"
+          id="textoCategoria"
+        />
+        <button id="addCategoria" class="btn">Add</button>
+        <select id="categorias"></select>
+        <br />
+        <h2>Ingrese los productos que desea agregar</h2>
+
+        <form id="registroProducto">
+          <input type="text" placeholder="Ingrese el nombre del producto" />
+          <input type="number" placeholder="Precio del producto" />
+          <input type="submit" value="submit" />
+        </form>
+        <br />
+        <h2>Que productos desea filtrar?</h2>
+
+        <input
+          id="filtroProducto"
+          type="text"
+          placeholder="Ingresa el nombre a buscar"
+        />
+        <button id="limpiar">Limpiar</button>
+        <button id="storage">Borrar productos</button>
+
+      </div>
+      <!-- Practica: Agregar productios UI -->
+      <div id="productosInterfaz"></div>
       <!-- Titulo -->
       <div class="title">
         <h2>Nuestro Menu</h2>
@@ -17,105 +49,57 @@
       </div>
       <!-- Botones de filtro -->
       <div class="btn-container">
-        <div class="btn-1"><button class="btn">$categorias</button></div>
-        <div class="btn-2"><button class="btn">$categorias</button></div>
-        <div class="btn-3"><button class="btn">$categorias</button></div>
+        <button class="filter-btn" type="button" data-id="Todos">Todos</button>
+        <button class="filter-btn" type="button" data-id="Entrantes">
+          Entrantes
+        </button>
+        <button class="filter-btn" type="button" data-id="Plato Principal">
+          Plato Principal
+        </button>
+        <button class="filter-btn" type="button" data-id="Postres">
+          Postres
+        </button>
       </div>
-      <!-- Formulario de practica -->
-      <div id="form">
-        <input type="text" placeholder="Escriba la categoria" id="textoCategoria"/>
-        <button id="addCategoria" class="btn">Add</button>
-        <select id="categorias" ></select>
-        <br>
-        <form id="registroProducto">
-          <input type="text" placeholder="Ingrese el nombre del producto" />
-          <input type="number" placeholder="Precio del producto" />
-          <input type="submit" value="submit" />
-        </form>
-      </div>
-      <!-- Practica: Agregar productios UI -->
-      <div id="productosInterfaz">
 
-      </div>
       <!-- Menu -->
       <div class="section-center">
         <!-- 1er item -->
-        <div class="menu-item">
-          <img src="./img/burger.jpg" alt="menu item" class="foto" />
-          <div class="item-info">
-            <header>
-              <h4>Papas con cheddar</h4>
-              <h4 class="precio">$15</h4>
-            </header>
-            <button class="reveal-btn">
-              <i class="fa-solid fa-burger icon"></i>
-            </button>
-            <div class="item-text hidden-content">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
-              voluptate tempore doloribus mollitia sequi dolore ratione
-              repudiandae cumque qui officiis!
-            </div>
-          </div>
-        </div>
-
-        <!-- 2do item -->
-        <div class="menu-item">
-          <img src="./img/brownie.jpg" alt="menu item" class="foto" />
-          <div class="item-info">
-            <header>
-              <h4>Papas con cheddar</h4>
-              <h4 class="precio">$15</h4>
-            </header>
-            <button class="reveal-btn">
-              <i class="fa-solid fa-burger icon"></i>
-            </button>
-            <div class="item-text hidden-content">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
-              voluptate tempore doloribus mollitia sequi dolore ratione
-              repudiandae cumque qui officiis!
-            </div>
-          </div>
-        </div>
-
-        <!-- 3er item -->
-        <div class="menu-item">
-          <img src="./img/papas.jpg" alt="menu item" class="foto" />
-          <div class="item-info">
-            <header>
-              <h4>Papas con cheddar</h4>
-              <h4 class="precio">$15</h4>
-            </header>
-            <button class="reveal-btn">
-              <i class="fa-solid fa-burger icon"></i>
-            </button>
-            <div class="item-text hidden-content">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
-              voluptate tempore doloribus mollitia sequi dolore ratione
-              repudiandae cumque qui officiis!
-            </div>
-          </div>
-        </div>
-
-        <!-- 4er item -->
-        <div class="menu-item">
-          <img src="./img/papas.jpg" alt="menu item" class="foto" />
-          <div class="item-info">
-            <header>
-              <h4>Papas con cheddar</h4>
-              <h4 class="precio">$15</h4>
-            </header>
-            <button class="reveal-btn">
-              <i class="fa-solid fa-burger icon"></i>
-            </button>
-            <div class="item-text hidden-content">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos
-              voluptate tempore doloribus mollitia sequi dolore ratione
-              repudiandae cumque qui officiis!
-            </div>
-          </div>
-        </div>
+        <!-- Items del menu agregado desde JS -->
       </div>
     </section>
+    <!-- Daily Menu -->
+    <!-- Titulo -->
+    <section class="daily-menu">
+      <div class="d-title">
+        <h2>Nuestro Menu Del Día</h2>
+        <div class="d-underline"></div>
+      </div>
+      <!-- Menu -->
+      <div class="menu-conteiner">
+        <div class="img-container">
+          <img src="#" alt="" id="plato-img" />
+        </div>
+        <h2 id="plato"></h2>
+        <p id="info"></p>
+        <p id="precio"></p>
+        <!-- Botones -->
+        <div class="button-container">
+          <button class="prev-btn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="next-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <!-- random button -->
+        <button class="random-btn">Ramdom plato</button>
+      </div>
+    </section>
+
+    <!-- loader  -->
+    <div class="loader-container">
+      <img src="img/burger.gif" alt="" />
+    </div>
 
     <!-- Awesome icons -->
     <script
