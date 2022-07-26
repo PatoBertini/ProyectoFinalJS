@@ -1,3 +1,178 @@
+/*
+
+let nuevoProducto;
+let nuevoPrograma;
+let id;
+let nombre;
+let precio;
+let categoria;
+let resultadoProductos;
+let inicioCarga;
+let byeProducto;
+let findProducto;
+let otraAccion;
+let otraAccion2;
+let resultadoBusqueda;
+let encontrado;
+let resultadoBusqueda1;
+let eliminado;
+let productoEliminado;
+
+
+
+const agregarProducto = () => {
+  for (let i = 0; i < 2; i++) {
+    id = parseInt(prompt("Ingrese el ID del producto"));
+    nombre = prompt("Ingrese el nombre del producto");
+    precio = parseFloat(prompt("Ingrese el precio del producto"));
+    categoria = prompt(
+      `Ingrese la categoria del producto; \n Presione: \n 1) Entrantes \n 2) Plato principal \n 3) Postres`
+    );
+    if (categoria === "1") {
+      resultadoProductos = new Productos(id, nombre, precio, categorias[0]);
+    } else if (categoria === "2") {
+      resultadoProductos = new Productos(id, nombre, precio, categorias[1]);
+    } else if (categoria === "3") {
+      resultadoProductos = new Productos(id, nombre, precio, categorias[2]);
+    } else {
+      alert("Has ingresado datos erroneos!");
+    }
+    productos[i] = resultadoProductos;
+  }
+};
+
+const visualizarProducto = () => {
+  for (let i = 0; i < productos.length; i++) {
+    alert(
+      `El nombre del producto es: ${productos[i].nombre}. \n El ID es: ${productos[i].id} \n El precio es: ${productos[i].precio} \n La categoria del producto es: ${productos[i].categoria} `
+    );
+  }
+};
+
+// Todavia no me sale bien
+const eliminarProducto = (eliminado) => {
+  if (eliminado == "") {
+    alert("No ingresaste nada")
+  } productoEliminado = productos.filter((x) => x.nombre != eliminado);
+  if (productoEliminado === undefined) {
+    return alert('El producto no existe')
+  }
+  return alert(productos)
+}
+
+
+// OTRA OPCION PARA BUSCAR PRODUCTO
+// const buscarProducto = () => {
+//   findProducto = prompt("Que producto desea buscar?");
+// for (let i = 0; i < productos.length; i++) {
+//   if (findProducto == productos[i].nombre) {
+//     return alert(
+//       `El nombre del producto es: ${productos[i].nombre}. \n El ID es: ${productos[i].id} \n El precio es: ${productos[i].precio} \n La categoria del producto es: ${productos[i].categoria} `
+//       );
+//     }
+//   }
+//   return alert('El producto no existe')
+// };
+
+const buscarProducto = (valor) => {
+  if (valor == "") {
+    return alert("No ingresaste nada");
+  }
+  resultadoBusqueda = productos.find((x) => x.nombre == valor);
+  if (resultadoBusqueda === undefined) {
+    return alert(`El plato no existe`);
+  }
+  return alert(
+    `El nombre del producto es: ${resultadoBusqueda.nombre}. \n El ID es: ${resultadoBusqueda.id} \n El precio es: ${resultadoBusqueda.precio} \n La categoria del producto es: ${resultadoBusqueda.categoria}`
+  );
+};
+
+const iniciarPrograma = () => {
+  nuevoPrograma = prompt(
+    `Bienvenidos a Rizla soluciones sistematicas. \n Que función desea realizar? \n 1) Agregar un producto \n 2) Visualizar los productos cargados\n 3) Eliminar productos \n 4) Buscar un producto especifico \n \n Escriba "salir" para terminar el programa`
+  );
+  if (nuevoPrograma == "ESC") {
+    alert("Has seleccionado salir");
+    iniciarPrograma();
+  } else {
+    switch (nuevoPrograma) {
+      case "1":
+        agregarProducto();
+        let otraAccion = prompt(
+          `Desea realizar otra accion? \n Presione 1 para volver al menu. \n Presione 2 para visualisar los productos \n Presione 3 para salir`
+        );
+        switch (otraAccion) {
+          case "1":
+            iniciarPrograma();
+            break;
+          case "2":
+            visualizarProducto();
+            iniciarPrograma();
+            break;
+          case "3":
+            break;
+        }
+        break;
+      case "2":
+        if (productos.length == 0) {
+          alert("No hay ningun producto agregado, no puedes visualizar nada");
+          iniciarPrograma();
+        } else {
+          visualizarProducto();
+          let otraAccion2 = prompt(
+            `Desea realizar otra accion? \n Presione 1 para volver al menu. \n Presione 2 para salir`
+          );
+          switch (otraAccion2) {
+            case "1":
+              iniciarPrograma();
+              break;
+            case "2":
+              break;
+          }
+        }
+        break;
+      case "3":
+        if (productos.length == 0) {
+          alert("No hay ningun producto agregado, no puedes eliminar nada");
+          iniciarPrograma();
+        } else {
+          eliminado = prompt('Que producto desea eliminar?')
+          eliminarProducto(eliminado);
+          iniciarPrograma()
+        }
+        break;
+      case "4":
+        if (productos.length == 0) {
+          alert("No hay ningun producto agregado, no puedes buscar nada");
+          iniciarPrograma();
+        } else {
+          findProducto = prompt("Que producto desea buscar?");
+          buscarProducto(findProducto);
+          iniciarPrograma();
+        }
+        break;
+      case "salir":
+        break;
+      default:
+        alert(
+          "Tenes que ingresar los numeros que te pide el programa, estoy aprendiendo."
+        );
+        iniciarPrograma();
+        break;
+    }
+  }
+};
+
+iniciarPrograma();
+console.log(productos);
+
+ */
+
+
+
+/*
+
+
 // Tarjetas cards del menu
 
 const menu = [
@@ -6,7 +181,7 @@ const menu = [
     nombre: "Hamburguesa Completa",
     categoria: "Plato Principal",
     precio: 980,
-    img: "img/displayMenu/burgerCompleta.jpg",
+    img: "./img/burger.jpg",
     desc: `Hamburguesa completa con jamon, queso, lechuga, tomate, bacon y huevo `,
   },
   {
@@ -14,7 +189,7 @@ const menu = [
     nombre: "Brownie con helado",
     categoria: "Postres",
     precio: 650,
-    img: "./img/displayMenu/brownieSolo.jpg",
+    img: "./img/brownie.jpg",
     desc: `Nuestro famoso brownie con helado de americana `,
   },
   {
@@ -22,7 +197,7 @@ const menu = [
     nombre: "Papas con cheddar y bacon",
     categoria: "Entrantes",
     precio: 450,
-    img: "./img/displayMenu/papas.jpg",
+    img: "./img/papas.jpg",
     desc: `Papas fritas con salsa casera de cheddar y una lluvia de bacon`,
   },
   {
@@ -30,7 +205,7 @@ const menu = [
     nombre: "Mix de croquetas fritas",
     categoria: "Entrantes",
     precio: 750,
-    img: "./img/displayMenu/croquetas.jpeg",
+    img: "./img/papas.jpg",
     desc: `Disfruta estas 6 croquetas de bacalao, jamon y queso`,
   },
   {
@@ -38,164 +213,79 @@ const menu = [
     nombre: "Plovoleta a la fugazzeta",
     categoria: "Entrantes",
     precio: 420,
-    img: "./img/displayMenu/provoleta.jpeg",
+    img: "./img/papas.jpg",
     desc: `Deliciosa provoleta cubierta por cebolla pochada en miel y cerveza`,
-  },
-  {
-    id: 6,
-    nombre: "Banana Pancakes",
-    categoria: "Postres",
-    precio: 600,
-    img: "./img/displayMenu/bananaPancake.jpg",
-    desc: `Torre de wafles cubiertos por una lluvia de banana y glaseado de sirope de arce`,
-  },
-  {
-    id: 7,
-    nombre: "Berrys Pancakes",
-    categoria: "Postres",
-    precio: 640,
-    img: "./img/displayMenu/berryPancake.jpg",
-    desc: `Torre de wafles rellenos de arandanos y bananas cubiertos por un almibar de frutos rojos.`,
-  },
-  {
-    id: 8,
-    nombre: "Brochette Estilo Oriental",
-    categoria: "Entrantes",
-    precio: 820,
-    img: "./img/displayMenu/brochetteIndian.jpg",
-    desc: `Dos unidades de brochettes de pollo con mix de verduras condimentado con especies orientales acompañado de arroz thai y pico de gallo.`,
-  },
-  {
-    id: 9,
-    nombre: "Ensalada Waldorf",
-    categoria: "Plato Principal",
-    precio: 420,
-    img: "./img/displayMenu/ensalada.jpg",
-    desc: `Nuestra especial Ensalada Waldorf adaptada a nuestro paladar. Compuesta por: Lechuga, Zanahoria, Nueces, Queso de Cabra, Olivas Negras, Manzana y Cebolla Morada. Condimentada con nuestra salsa especial para ensaladas.`,
-  },
-  {
-    id: 10,
-    nombre: "Briscket Al Ajillo",
-    categoria: "Plato Principal",
-    precio: 1890,
-    img: "./img/displayMenu/lomo.jpg",
-    desc: `Nuestro famoso Brisket de 1000 Grms marinado al vacio con ajo y romero, cocinado a baja temperatura y sellado a la leña, acompañado con papas fritas.`,
-  },
-  {
-    id: 11,
-    nombre: "Parrillada a las brasas",
-    categoria: "Plato Principal",
-    precio: 1820,
-    img: "./img/displayMenu/parrillada.jpg",
-    desc: `Nuestra tradicional Parrillada para compartir acompañado de nuestras tradicionales salsas caseras.`,
-  },
-  {
-    id: 12,
-    nombre: "Mousse de chocolate",
-    categoria: "Postres",
-    precio: 780,
-    img: "./img/displayMenu/postreChocolate.jpg",
-    desc: `Nuestro famoso Mousse de chocolate cubierto con un glaseado de frutos rojos.`,
-  },
-  {
-    id: 13,
-    nombre: "CheeseCake de Frutos Rojos",
-    categoria: "Postres",
-    precio: 750,
-    img: "./img/displayMenu/postreFrutilla.jpg",
-    desc: `Torta Cheesecake de frutos rojos.`,
-  },
-  {
-    id: 14,
-    nombre: "Torta Tres Leches",
-    categoria: "Postres",
-    precio: 920,
-    img: "./img/displayMenu/postreTresLeches.jpg",
-    desc: `Nuestro especial postre ganador del premio al mejor postre de la región, Nuestro especial Torta Tres Leches relleno de diferente mousses..`,
-  },
-  {
-    id: 15,
-    nombre: "Salmon Estilo Oriental",
-    categoria: "Plato Principal",
-    precio: 1820,
-    img: "./img/displayMenu/salmonOriental.jpg",
-    desc: `Salmon estilo oriental acompañado de nuestra especial salsa Yakitori y wok de verduras.`,
   },
 ];
 
-// Elementos Padres
-const mainSection = document.querySelector(".section-center");
-const btnContainer = document.querySelector(".btn-container");
+let platosEntrantes = menu
+  .filter((x) => {
+    return x.categoria === "Entrantes";
+  }) // Aca en el filter se crea un nuevo array con todas las categorias entrantes
+  .map((x) => {
+    return x.nombre;
+  }); // Aca estamos mapeando solo los nombres del array anterior
 
-// Display todos los items cuando carga la pagina.
-window.addEventListener("DOMContentLoaded", function () {
-  displayMenuItems(menu);
+console.log(platosEntrantes);
+
+let diferentesPlatos = menu.map(function (x) {
+  return x.precio;
 });
+console.log(diferentesPlatos);
 
-// Funcion para agregar el Array Menu
-function displayMenuItems(array) {
-  let displayMenu = array.map(function (x) {
-    return `<div class="menu-item">
-  <img src=${x.img} alt="menu item" class="foto" />
-  <div class=${x.nombre}>
-    <header>
-      <h4>${x.nombre}</h4>
-      <h4 class="precio">${x.precio}</h4>
-    </header>
-    <button class="reveal-btn">
-      <i class="fa-solid fa-burger icon"></i>
-    </button>
-    <div class="item-text hidden-content">
-    ${x.desc}
-    </div>
-  </div>
-</div>`;
-  });
-  displayMenu = displayMenu.join(""); // Se agregan comillas para sacar las comas del array.
-  mainSection.innerHTML = displayMenu;
+// Estructura HTLM del proyecto, variables JS necesarias, funciones del proceso a simular, objetos de JS, Arrays, metodos de busqueda y filtrado sobre el array.
+
+// DOM - Interacciones HTML
+
+// Agregando cards del array [menu]
+
+let nuevoDiv = document.createElement("div");
+
+for (const x of menu) {
+  let nuevoDiv = document.createElement("div");
+  nuevoDiv.innerHTML = `<h2>Producto: ${x.nombre} </h2>
+<h2>Precio: ${x.precio} </h2> <h2>Descripcion: ${x.desc} </h2>  <button> Comprar </button>`;
+  document.body.append(nuevoDiv);
 }
 
-// Funcion para filtrar los botones del menu dependiendo la categoria seleccionada
+nuevoDiv.setAttribute("id", "cards");
+console.log(nuevoDiv.children);
 
-const filterBtns = document.querySelectorAll(".filter-btn");
+ */
 
-// console.log(filterBtns);
+// Variables Globales
 
-filterBtns.forEach(function (btn) {
-  btn.addEventListener("click", function (e) {
-    console.log(e.currentTarget.dataset);
-    const categoria = e.currentTarget.dataset.id;
-    const menuCategory = menu.filter(function (array) {
-      if (array.categoria === categoria) {
-        return array;
-      }
-    });
-    // console.log(menuCategory);
-    if (categoria === "Todos") {
-      return displayMenuItems(menu);
-    } else {
-      displayMenuItems(menuCategory);
-    }
-  });
-});
-
-// Intentando hacer funcionar el boton para que revele un texto.
 const revealBtn = document.getElementsByClassName("reveal-btn");
+
 const hiddenContent = document.getElementsByClassName("hidden-content");
 
-console.log(revealBtn);
-console.log(hiddenContent);
-
 function revealContent() {
-  if (hiddenContent.classList.contains("reveal-btn")) {
-    hiddenContent.classList.remove("reveal-btn");
+  if (hiddenContent[1].classList.contains("reveal-btn")) {
+    hiddenContent[1].classList.remove("reveal-btn");
   } else {
-    hiddenContent.classList.add("reveal-btn");
+    hiddenContent[1].classList.add("reveal-btn");
   }
 }
-// revealBtn.addEventListener("click", revealContent);
+
+revealBtn[1].addEventListener("click", revealContent);
+
+// let miFormulario = document.getElementById('registroProducto')
+
+// miFormulario.onsubmit = (e) => {
+//   e.preventDefault()
+//   console.log(this);
+//   console.log(e.target);
+//   const input = miFormulario.children
+//   console.log(input);
+//   productos.push(new Productos(productos.length+1,input[0].value,input[1].value, input[2].value));
+//   console.log(productos);
+// }
+/*
 
 // Agregar una categoria con la interfaz
+// 1ro creo array categoria, 2do creo variable que llame al boton 3ro creo evento pal boton
+4to creo una funcion que; /tome valores del input /si no esta vacio, pushee al array y lo mande a local storage/ luego vacio el input y vuelvo a llamar a la funcion 
+*/
 
 let categorias = [];
 
@@ -225,191 +315,65 @@ function reclamarCategoria() {
   }
 }
 
-// Mandar un producto al localstorage y luego agregarlo a un div.
+// mandar un producto al localstorage y luego agregarlo a un div.
+// 1ro selecciono el div para enviar los productos.
+// 2do creo variable para obtener datos de los inputs
+// creo evento para el boton input
+// creo funcion para; - declaro variable de vaor - pusheo el ar
+
 
 let productos = [];
 // let categorias = ["Entrantes", "Plato principal", "Postres"];
 
 class Productos {
-  constructor(nombre, precio, id, categoria) {
+  constructor(id, nombre, precio, categoria) {
+    this.id = id;
     this.nombre = nombre;
     this.precio = precio;
-    this.id = id;
     this.categoria = categoria;
   }
 }
 
-// Obtenemos los elementos del DOM para manejarlos en JS
-let espacioProductos = document.getElementById("productosInterfaz");
-let registrarProductos = document.getElementById("registroProducto");
-let filtrarProducto = document.getElementById("filtroProducto");
-let limpiarProducto = document.getElementById("limpiar");
-let limpiarStorage = document.getElementById('storage')
+//DEFINO UN DIV PARA MOSTRAR LOS PRODUCTOS QUE AGREGAREMOS DE FORMA DINAMICA
+const atribuirProductos = document.getElementById("productosInterfaz");
 
-// Pregunto si ya existen productos en el localStorage para recuperarlos
-if ("Mercaderias" in localStorage) {
-  const guardados = JSON.parse(localStorage.getItem("Mercaderias"));
-  // Los transformo a objetos de tipo producto
-  for (const x of guardados) {
-    productos.push(new Productos(x.nombre, x.precio, x.id));
-  }
-  productoHTML(productos);
-}
 
-// Agrego un manejador de evento submit al formulario
-registrarProductos.onsubmit = (e) => {
-  e.preventDefault();
-  let hijos = registrarProductos.children; // Obtengo la info de los hijos del formulario
-  productos.push(new Productos(hijos[0].value, hijos[1].value, hijos[2].value));
-  productoHTML(productos); // LLamo a la funcion para generar la interfaz
-  e.target.reset(); // Reseteo el input
-  localStorage.setItem("Mercaderias", JSON.stringify(productos));
-};
 
-// Funcion para generar interfaz
-function productoHTML(array) {
-  espacioProductos.innerHTML = "";
-  for (const x of array) {
-    let div = document.createElement("div");
-    div.className = "probando";
-    div.innerHTML = `<h3> Nombre del producto: ${x.nombre} </h3> 
+//FUNCION PARA GENERAR LA INTERFAZ DINAMICA
+function productosUI(productos) {
+  atribuirProductos.innerHTML = "";
+  for (const x of productos) {
+    let divProducto = document.createElement("div");
+    divProducto.innerHTML =  `<h3> Nombre: ${x.nombre} </h3> 
     <h4> Precio: ${x.precio}</h4>
-    <button id='${x.id}' class = 'filter-btn'>Comprar</button>`;
-    espacioProductos.append(div);
+    <button id='${x.id}' class = 'btnCompra'>Comprar</button>`;
+    atribuirProductos.append(divProducto)
   }
 }
 
-// Agrego un evento input en el filtro
-filtrarProducto.addEventListener("input", function () {
-  const filtrados = productos.filter((x) =>
-    x.nombre.includes(this.value)
-  );
-  console.log(filtrados);
-  if (filtrados.length > 0) {
-    productoHTML(filtrados);
-  } else {
-    espacioProductos.innerHTML = "No se encontraron los productos indicados";
+
+//VALIDAMOS SI YA EXISTE LA CLAVE EN EL LOCALSTORAGE
+if ('listaProductos' in localStorage) {
+  const almacenado = JSON.parse(localStorage.getItem('listaProductos'))
+  console.log(almacenado);
+  for (const x of almacenado) {
+    productos.push(new Productos(x.id ,x.nombre, x.precio))
   }
-});
-
-//Limpiar filtro
-limpiarProducto.onclick= () => {
-  filtrarProducto.value= "";
-  productoHTML(productos);
+  console.log(productos);
+  productosUI()
 }
 
-// Limpiar el localStorage
-limpiarStorage.onclick= () => {
-  localStorage.removeItem('Mercaderias')
-  window.location.reload(); 
+//OBTENER EL FORMULARIO PARA CREAR PRODUCTOS
+let miFormulario= document.getElementById('registroProducto');
+
+//AGREGAR EVENTO SUBMIT AL FORMULARIO
+miFormulario.onsubmit = (e) => {    
+        e.preventDefault(); 
+        const inputs= miFormulario.children;
+        //INSTANCIAMOS UN OBJETO USANDOS LOS VALUE DE CADA INPUT
+        productos.push(new Productos(productos.length+1,inputs[0].value, inputs[1].value));
+        //ALMACENAMOS EL ARRAY ACTUALIZADO EN EL LOCALSTORAGE (PASANDOLO DESDE OBJETO A JSON)
+        localStorage.setItem('listaProductos',JSON.stringify(productos)); 
+        //LLAMAMOS A LA FUNCION PARA GENERAR LA INTERFAZ
+        productosUI(productos);
 }
-
-// Daily Menu
-
-const dailyMenu = [
-  {
-    id: 0,
-    nombre: "BBQ Smokey Burger",
-    info: "Tradicional hamburguesa casera estilo americana de 250 grs, Grillada a la leña, con queso cheddar, BBQ Smokey Honey, Panceta ahumada y Cebolla caramelizada.",
-    precio: "Precio: " + 1325 + "$",
-    img: "img/dailyMenu/bbqburger.jpg",
-  },
-  {
-    id: 1,
-    nombre: "Chicken Brochettes Estilo Oriental ",
-    info: "Brochettas de pollo y mix de verduras cocinadas a fuego lento y marinadas en salsa teriyaki casera.",
-    precio: "Precio: " + 1110 + "$",
-    img: "img/dailyMenu/teriyaki.jpeg",
-  },
-  {
-    id: 2,
-    nombre: "Nashville Chicken Burger ",
-    info: "Tradicional filet de pollo empanado con especias ahumadas y un toque de spicy acompañado de una coleslaw y nuestra especial salsa Smokey Mayo.",
-    precio: "Precio: " + 1210 + "$",
-    img: "img/dailyMenu/carlton.jpg",
-  },
-  {
-    id: 3,
-    nombre: "Mexican Tacos de Birria de Res ",
-    info: "4 unidades de tacos mexicanos rellenos de carne de res cocinada por 4 horas a fuego medio en su salsa picante, acompañado de pico de gallo casero y cilantro.",
-    precio: "Precio: " + 1305 + "$",
-    img: "img/dailyMenu/birria.jpeg",
-  },
-  {
-    id: 4,
-    nombre: "Philly CheeseSteak Sandwich ",
-    info: "Hebras de lomo salteadas con cebollas caramelizadas, queso parmesano y queso cheddar aderezadas con nuestra tradicional Secret Mayo en pan Baguette.",
-    precio: "Precio: " + 1150 + "$",
-    img: "img/dailyMenu/steaky.jpg",
-  },
-];
-
-const nombre = document.getElementById("plato");
-const info = document.getElementById("info");
-const precio = document.getElementById("precio");
-const img = document.getElementById("plato-img");
-
-const prevBtn = document.querySelector(".prev-btn");
-const nextBtn = document.querySelector(".next-btn");
-const randomBtn = document.querySelector(".random-btn");
-
-// Setup starting item
-let currentItem = 0;
-
-// Setup load Pagina inicial
-
-window.addEventListener("DOMContentLoaded", function () {
-  mostrarPlato();
-});
-
-// Mostrar plato basada en item
-
-function mostrarPlato() {
-  const item = dailyMenu[currentItem];
-  console.log(item);
-  nombre.textContent = item.nombre;
-  info.textContent = item.info;
-  precio.textContent = item.precio;
-  img.src = item.img;
-}
-
-// La funcion mostrarPlato te va a mostrar el plato id: 0 del array dailyMenu por que esta seteado en la variable currentItem
-
-// Mostrar el plato siguiente
-
-nextBtn.addEventListener("click", function () {
-  currentItem++;
-  if (currentItem > dailyMenu.length - 1) {
-    currentItem = 0;
-  }
-  mostrarPlato();
-});
-
-// Mostrar el plato anterior
-
-prevBtn.addEventListener("click", function () {
-  currentItem--;
-  if (currentItem < 0) {
-    currentItem = dailyMenu.length - 1;
-  }
-  mostrarPlato();
-});
-
-// Mostrar un plato al azar
-
-randomBtn.addEventListener("click", function () {
-  currentItem = Math.floor(Math.random() * dailyMenu.length);
-  mostrarPlato();
-});
-
-// Loader icono burger
-
-function loader() {
-  document.querySelector(".loader-container").classList.add("fade-out");
-}
-
-function fadeOut() {
-  setInterval(loader, 3000);
-}
-
-window.onload = fadeOut();
