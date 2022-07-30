@@ -5,48 +5,124 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Css link -->
-    <link rel="stylesheet" href="styles.css" />
-    <title>Ficha tecnica productos</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <!-- Swiper link -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
+    <title>Restaurant Menu</title>
   </head>
   <body>
-    <section class="menu">
-      <!-- Formulario de practica -->
-      <div id="form">
-        <h2>Ingrese la categoria del producto</h2>
-        <input
-          type="text"
-          placeholder="Escriba la categoria"
-          id="textoCategoria"
-        />
-        <button id="addCategoria" class="btn">Add</button>
-        <select id="categorias"></select>
-        <br />
-        <h2>Ingrese los productos que desea agregar</h2>
+    <!-- Nav-Bar -->
+    <nav>
+      <div class="nav-center">
+        <!-- nav header -->
+        <div class="nav-header">
+          <img src="./img/payelogo.jpeg" class="logo" alt="logo" />
+          <button class="nav-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
 
-        <form id="registroProducto">
-          <input type="text" placeholder="Ingrese el nombre del producto" />
-          <input type="number" placeholder="Precio del producto" />
-          <input type="submit" value="submit" />
-        </form>
-        <br />
-        <h2>Que productos desea filtrar?</h2>
+        <!-- links -->
+        <ul class="links">
+          <li>
+            <a href="index.html">home</a>
+          </li>
+          <li>
+            <a href="about.html">Menu</a>
+          </li>
+          <li>
+            <a href="projects.html">especialidades</a>
+          </li>
+          <li>
+            <a href="contact.html">contacto</a>
+          </li>
+        </ul>
 
-        <input
-          id="filtroProducto"
-          type="text"
-          placeholder="Ingresa el nombre a buscar"
-        />
-        <button id="limpiar">Limpiar</button>
-        <button id="storage">Borrar productos</button>
-
+        <button id="boton-carrito">
+          <i class="fas fa-shopping-cart"></i
+          ><span id="contadorCarrito">0</span>
+        </button>
       </div>
-      <!-- Practica: Agregar productios UI -->
-      <div id="productosInterfaz"></div>
+    </nav>
+    
+    <!-- Modal Div -->
+    <div class="modal-contenedor">
+      <div class="modal-carrito">
+        <h3>carrito</h3>
+        <button id="carritoCerrar"><i class="fas fa-times-circle"></i></button>
+        <div id="carrito-contenedor">
+          <!-- traido desde js -->
+        </div>
+        <p class="precioProducto">Precio total: $ <span id="precioTotal">0</span></p>
+        <button id="vaciar-carrito" class="boton-agregar">Vaciar Carrito</button>
+      </div>
+    </div>
+
+    <!-- Formulario de practica -->
+    <div id="form">
+      <h2>Ingrese la categoria del producto</h2>
+
+      <input
+        type="text"
+        placeholder="Escriba la categoria"
+        id="textoCategoria"
+      />
+
+      <button id="addCategoria" class="btn">Add</button>
+      <select id="categorias"></select>
+      <br />
+      <h2>Ingrese los productos que desea agregar</h2>
+
+      <form id="registroProducto">
+        <input type="text" placeholder="Ingrese el nombre del producto" />
+        <input type="number" placeholder="Precio del producto" />
+        <input type="submit" value="submit" />
+      </form>
+
+      <br />
+
+      <h2>Que productos desea filtrar?</h2>
+
+      <input
+        id="filtroProducto"
+        type="text"
+        placeholder="Ingresa el nombre a buscar"
+      />
+
+      <button id="limpiar">Limpiar</button>
+      <button id="storage">Borrar productos</button>
+    </div>
+
+    <!-- Practica: Agregar productios UI -->
+    <div id="productosInterfaz"></div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-div-text">
+        <h2>Bienvenido a Nuestro portal</h2>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint nostrum
+          autem laudantium natus perferendis eum.
+        </p>
+        <button class="btn-neon">Pide Ya!</button>
+      </div>
+
+      <div class="hero-div-img">
+        <img src="./img/b-1.jpeg" class="h-img" alt="hero" />
+      </div>
+    </section>
+
+    <!-- Titulo Section -->
+    <section class="menu">
       <!-- Titulo -->
       <div class="title">
         <h2>Nuestro Menu</h2>
         <div class="underline"></div>
       </div>
+
       <!-- Botones de filtro -->
       <div class="btn-container">
         <button class="filter-btn" type="button" data-id="Todos">Todos</button>
@@ -62,18 +138,54 @@
       </div>
 
       <!-- Menu -->
-      <div class="section-center">
-        <!-- 1er item -->
-        <!-- Items del menu agregado desde JS -->
+      <section class="gallery" id="gallery">
+        <div class="box-container">
+          <!-- Items del menu agregado desde JS -->
+        </div>
+      </section>
+    </section>
+
+    <!-- Slider Section -->
+    <section class="home" id="home">
+      <div class="swiper home-slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide slide d-1">
+            <div class="content">
+              <h2>Viaja en el tiempo</h2>
+              <h3>Veni a conocer nuestro nuevo local retro!</h3>
+            </div>
+          </div>
+
+          <div class="swiper-slide slide d-2">
+            <div class="content">
+              <h2>Ambientado al mejor estilo vintage</h2>
+              <h3>Sentite como en los 80's y vivi una experiencia unica</h3>
+            </div>
+          </div>
+
+          <div class="swiper-slide slide d-3">
+            <div class="content">
+              <h2>
+                Retira nuestros productos por nuestra ventanilla Take-Away
+              </h2>
+              <!-- <h3>Retira nuestros productos por nuestra ventanilla Take-Away</h3> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
       </div>
     </section>
-    <!-- Daily Menu -->
+
+    <!-- Nuestras Especialidades -->
     <!-- Titulo -->
     <section class="daily-menu">
       <div class="d-title">
-        <h2>Nuestro Menu Del Día</h2>
+        <h2>Nuestras Especialidades</h2>
         <div class="d-underline"></div>
       </div>
+
       <!-- Menu -->
       <div class="menu-conteiner">
         <div class="img-container">
@@ -97,15 +209,17 @@
     </section>
 
     <!-- loader  -->
-    <div class="loader-container">
+    <!-- <div class="loader-container">
       <img src="img/burger.gif" alt="" />
-    </div>
+    </div> -->
 
+    <!-- Swiper Script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <!-- Awesome icons -->
     <script
       src="https://kit.fontawesome.com/0149485272.js"
       crossorigin="anonymous"
     ></script>
-    <script src="main.js"></script>
+    <script src="./javasCript/main.js"></script>
   </body>
 </html>
