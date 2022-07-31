@@ -46,268 +46,185 @@ modalCarrito.addEventListener("click", (event) => {
 
 /*
 =============== 
-Interfaz del usuario
-===============
-*/
-
-// Agregar una categoria con la interfaz
-
-let categorias = [];
-
-reclamarCategoria();
-
-let botonCategoria = document.getElementById("addCategoria");
-
-botonCategoria.addEventListener("click", agregarCategoria);
-
-function agregarCategoria() {
-  let valor = document.getElementById("textoCategoria").value;
-  if (valor != "") {
-    categorias.push(valor);
-    localStorage.setItem("listaCategorias", categorias);
-  }
-  document.getElementById("textoCategoria").value = "";
-  reclamarCategoria();
-}
-
-function reclamarCategoria() {
-  if ("listaCategorias" in localStorage) {
-    categorias = localStorage.getItem("listaCategorias").split(",");
-
-    let salida = `<option>${categorias.join("</option><option>")}</option>`;
-
-    document.getElementById("categorias").innerHTML = salida;
-  }
-}
-
-// Mandar un producto al localstorage y luego agregarlo a un div.
-
-let productos = [];
-
-class Productos {
-  constructor(nombre, precio, id, categoria) {
-    this.nombre = nombre;
-    this.precio = precio;
-    this.id = id;
-    this.categoria = categoria;
-  }
-}
-
-// Obtenemos los elementos del DOM para manejarlos en JS
-let espacioProductos = document.getElementById("productosInterfaz");
-let registrarProductos = document.getElementById("registroProducto");
-let filtrarProducto = document.getElementById("filtroProducto");
-let limpiarProducto = document.getElementById("limpiar");
-let limpiarStorage = document.getElementById("storage");
-
-// Pregunto si ya existen productos en el localStorage para recuperarlos
-if ("Mercaderias" in localStorage) {
-  const guardados = JSON.parse(localStorage.getItem("Mercaderias"));
-  // Los transformo a objetos de tipo producto
-  for (const x of guardados) {
-    productos.push(new Productos(x.nombre, x.precio, x.id));
-  }
-  productoHTML(productos);
-}
-
-// Agrego un manejador de evento submit al formulario
-registrarProductos.onsubmit = (e) => {
-  e.preventDefault();
-  let hijos = registrarProductos.children; // Obtengo la info de los hijos del formulario
-  productos.push(new Productos(hijos[0].value, hijos[1].value, hijos[2].value));
-  productoHTML(productos); // LLamo a la funcion para generar la interfaz
-  e.target.reset(); // Reseteo el input
-  localStorage.setItem("Mercaderias", JSON.stringify(productos));
-};
-
-// Funcion para generar interfaz
-function productoHTML(array) {
-  espacioProductos.innerHTML = "";
-  for (const x of array) {
-    let div = document.createElement("div");
-    div.className = "probando";
-    div.innerHTML = `<h3> Nombre del producto: ${x.nombre} </h3> 
-    <h4> Precio: ${x.precio}</h4>
-    <button id='${x.id}' class = 'filter-btn'>Comprar</button>`;
-    espacioProductos.append(div);
-  }
-}
-
-// Agrego un evento input en el filtro
-filtrarProducto.addEventListener("input", function () {
-  const filtrados = productos.filter((x) => x.nombre.includes(this.value));
-  console.log(filtrados);
-  if (filtrados.length > 0) {
-    productoHTML(filtrados);
-  } else {
-    espacioProductos.innerHTML = "No se encontraron los productos indicados";
-  }
-});
-
-//Limpiar filtro
-limpiarProducto.onclick = () => {
-  filtrarProducto.value = "";
-  productoHTML(productos);
-};
-
-// Limpiar el localStorage
-limpiarStorage.onclick = () => {
-  localStorage.removeItem("Mercaderias");
-  window.location.reload();
-};
-
-/*
-=============== 
 Arrays tarjeta cards del menu
 ===============
 */
 
-const menu = [
-  {
-    id: 1,
-    nombre: "Papas con cheddar y bacon",
-    categoria: "Entrantes",
-    precio: 450,
-    img: "./img/displayMenu/papas.jpg",
-    desc: `Papas fritas con salsa casera de cheddar y una lluvia de bacon`,
-    cantidad: 1,
-  },
-  {
-    id: 2,
-    nombre: "Mix de croquetas fritas",
-    categoria: "Entrantes",
-    precio: 750,
-    img: "./img/displayMenu/croquetas.jpeg",
-    desc: `Disfruta estas 6 croquetas de bacalao, jamon y queso`,
-    cantidad: 1,
-  },
-  {
-    id: 3,
-    nombre: "Plovoleta a la fugazzeta",
-    categoria: "Entrantes",
-    precio: 420,
-    img: "./img/displayMenu/provoleta.jpeg",
-    desc: `Deliciosa provoleta cubierta por cebolla pochada en miel y cerveza`,
-    cantidad: 1,
-  },
-  {
-    id: 4,
-    nombre: "Ensalada Waldorf",
-    categoria: "Plato Principal",
-    precio: 420,
-    img: "./img/displayMenu/ensalada.jpg",
-    desc: `Ensalada Waldorf con mix de verduras y frutas acompañada con nuestra salsa de la casa.`,
-    cantidad: 1,
-  },
-  {
-    id: 5,
-    nombre: "Smokey Onion Burger",
-    categoria: "Plato Principal",
-    precio: 980,
-    img: "img/h-3.jpg",
-    desc: `Hamburguesa de la casa con Smokey Onion y Honey Mustard `,
-    cantidad: 1,
-  },
-  {
-    id: 6,
-    nombre: "Brochette Estilo Oriental",
-    categoria: "Entrantes",
-    precio: 820,
-    img: "./img/displayMenu/brochetteIndian.jpg",
-    desc: `Brochettes de pollo estilo oriental con arroz thai y chimichurri`,
-    cantidad: 1,
-  },
-  {
-    id: 7,
-    nombre: "Briscket Al Ajillo",
-    categoria: "Plato Principal",
-    precio: 1890,
-    img: "./img/displayMenu/lomo.jpg",
-    desc: `Nuestro famoso Brisket de 1000 Grms marinado al vacio con ajo y romero, cocinado a baja temperatura y sellado a la leña, acompañado con papas fritas.`,
-    cantidad: 1,
-  },
-  {
-    id: 8,
-    nombre: "Parrillada a las brasas",
-    categoria: "Plato Principal",
-    precio: 1820,
-    img: "./img/displayMenu/parrillada.jpg",
-    desc: `Nuestra tradicional Parrillada para compartir acompañado de nuestras tradicionales salsas caseras.`,
-    cantidad: 1,
-  },
-  {
-    id: 9,
-    nombre: "Salmon Estilo Oriental",
-    categoria: "Plato Principal",
-    precio: 1820,
-    img: "./img/displayMenu/salmonOriental.jpg",
-    desc: `Salmon estilo oriental acompañado de nuestra especial salsa Yakitori y wok de verduras.`,
-    cantidad: 1,
-  },
+class Plato {
+  constructor(id, nombre, categoria, precio, url, desc, cantidad) {
+    this.id = parseInt(id);
+    this.nombre = nombre;
+    this.categoria = categoria;
+    this.precio = parseFloat(precio);
+    this.img = url;
+    this.desc = desc;
+    this.cantidad = cantidad || 1;
+  }
 
-  {
-    id: 10,
-    nombre: "Brownie con helado",
-    categoria: "Postres",
-    precio: 650,
-    img: "./img/displayMenu/brownieSolo.jpg",
-    desc: `Nuestro famoso brownie con helado de americana `,
-    cantidad: 1,
-  },
+  addCantidad() {
+    this.cantidad++;
+  }
+}
+const menu = [];
+menu.push(
+  new Plato(
+    1,
+    "Papas con cheddar y bacon",
+    "Entrantes",
+    450,
+    "./img/displayMenu/papas.jpg",
+    `Papas fritas con salsa casera de cheddar y una lluvia de bacon`
+  )
+);
+menu.push(
+  new Plato(
+    2,
+    "Mix de croquetas fritas",
+    "Entrantes",
+    750,
+    "./img/displayMenu/croquetas.jpeg",
+    `Disfruta estas 6 croquetas de bacalao, jamon y queso`
+  )
+);
+menu.push(
+  new Plato(
+    3,
+    "Plovoleta a la fugazzeta",
+    "Entrantes",
+    420,
+    "./img/displayMenu/provoleta.jpeg",
+    `Deliciosa provoleta cubierta por cebolla pochada en miel y cerveza`
+  )
+);
+menu.push(
+  new Plato(
+    4,
+    "Ensalada Waldorf",
+    "Plato Principal",
+    450,
+    "./img/displayMenu/ensalada.jpg",
+    `Ensalada Waldorf con mix de verduras y frutas acompañada con nuestra salsa de la casa`,
+    1
+  )
+);
+menu.push(
+  new Plato(
+    5,
+    "Smokey Onion Burger",
+    "Plato Principal",
+    980,
+    "./img/h-3.jpg",
+    `Hamburguesa de la casa con Smokey Onion y Honey Mustard`
+  )
+);
+menu.push(
+  new Plato(
+    6,
+    "Brochette Estilo Oriental",
+    "Entrantes",
+    820,
+    "./img/displayMenu/brochetteIndian.jpg",
+    `Brochettes de pollo estilo oriental con arroz thai y chimichurri`
+  )
+);
+menu.push(
+  new Plato(
+    7,
+    "Briscket Al Ajillo",
+    "Plato Principal",
+    1980,
+    "./img/displayMenu/lomo.jpg",
+    `Nuestro famoso Brisket de 1000 Grms marinado al vacio con ajo y romero, cocinado a baja temperatura y sellado a la leña, acompañado con papas fritas`
+  )
+);
+menu.push(
+  new Plato(
+    8,
+    "Parrillada a las brasas",
+    "Plato Principal",
+    1820,
+    "./img/displayMenu/parrillada.jpg",
+    `Nuestra tradicional Parrillada para compartir acompañado de nuestras tradicionales salsas caseras`
+  )
+);
+menu.push(
+  new Plato(
+    9,
+    "Salmon Estilo Oriental",
+    "Plato Principal",
+    1820,
+    "./img/displayMenu/salmonOriental.jpg",
+    `Salmon estilo oriental acompañado de nuestra especial salsa Yakitori y wok de verduras`
+  )
+);
+menu.push(
+  new Plato(
+    10,
+    "Brownie con helado",
+    "Postres",
+    650,
+    "./img/displayMenu/brownieSolo.jpg",
+    `Nuestro famoso brownie con helado de americana`
+  )
+);
+menu.push(
+  new Plato(
+    11,
+    "Banana Pancakes",
+    "Postres",
+    600,
+    "./img/displayMenu/bananaPancake.jpg",
+    `Torre de wafles cubiertos por una lluvia de banana y glaseado de sirope de arce`
+  )
+);
+menu.push(
+  new Plato(
+    12,
+    "Berrys Pancakes",
+    "Postres",
+    980,
+    "./img/displayMenu/berryPancake.jpg",
+    `Torre de wafles rellenos de arandanos y bananas cubiertos por un almibar de frutos rojos`
+  )
+);
+menu.push(
+  new Plato(
+    13,
+    "Mousse de chocolate",
+    "Postres",
+    880,
+    "./img/displayMenu/postreChocolate.jpg",
+    `Nuestro famoso Mousse de chocolate cubierto con un glaseado de frutos rojos`
+  )
+);
+menu.push(
+  new Plato(
+    14,
+    "CheeseCake de Frutos Rojos",
+    "Postres",
+    760,
+    "./img/displayMenu/postreFrutilla.jpg",
+    `TorTorta Cheesecake de frutos rojos.`
+  )
+);
+menu.push(
+  new Plato(
+    15,
+    "Torta Tres Leches",
+    "Postres",
+    990,
+    "./img/displayMenu/postreTresLeches.jpg",
+    `Nuestro especial postre ganador del premio al mejor postre de la región, Nuestro especial Torta Tres Leches relleno de diferente mousses.`
+  )
+);
 
-  {
-    id: 11,
-    nombre: "Banana Pancakes",
-    categoria: "Postres",
-    precio: 600,
-    img: "./img/displayMenu/bananaPancake.jpg",
-    desc: `Torre de wafles cubiertos por una lluvia de banana y glaseado de sirope de arce`,
-    cantidad: 1,
-  },
-  {
-    id: 12,
-    nombre: "Berrys Pancakes",
-    categoria: "Postres",
-    precio: 640,
-    img: "./img/displayMenu/berryPancake.jpg",
-    desc: `Torre de wafles rellenos de arandanos y bananas cubiertos por un almibar de frutos rojos.`,
-    cantidad: 1,
-  },
-
-  {
-    id: 13,
-    nombre: "Mousse de chocolate",
-    categoria: "Postres",
-    precio: 780,
-    img: "./img/displayMenu/postreChocolate.jpg",
-    desc: `Nuestro famoso Mousse de chocolate cubierto con un glaseado de frutos rojos.`,
-    cantidad: 1,
-  },
-  {
-    id: 14,
-    nombre: "CheeseCake de Frutos Rojos",
-    categoria: "Postres",
-    precio: 750,
-    img: "./img/displayMenu/postreFrutilla.jpg",
-    desc: `Torta Cheesecake de frutos rojos.`,
-    cantidad: 1,
-  },
-  {
-    id: 15,
-    nombre: "Torta Tres Leches",
-    categoria: "Postres",
-    precio: 920,
-    img: "./img/displayMenu/postreTresLeches.jpg",
-    desc: `Nuestro especial postre ganador del premio al mejor postre de la región, Nuestro especial Torta Tres Leches relleno de diferente mousses..`,
-    cantidad: 1,
-  },
-];
+console.log(menu);
 
 // Elementos Padres
 const mainSection = document.querySelector(".box-container");
 const btnContainer = document.querySelector(".btn-container");
-let carrito = [];
 
+let carrito = [];
 
 // Display todos los items cuando carga la pagina.
 // window.addEventListener("DOMContentLoaded", function () {
@@ -334,7 +251,9 @@ menu.forEach((x) => {
   });
 });
 
-// Funcion para agregar el Array Menu
+/*
+
+// funcion para plasmar un array en la web
 function displayMenuItems(array) {
   let displayMenu = array.map(function (x) {
     return `<div class="box">
@@ -348,8 +267,8 @@ function displayMenuItems(array) {
   });
   displayMenu = displayMenu.join(""); // Se agregan comillas para sacar las comas del array.
   mainSection.innerHTML = displayMenu;
-  const boton = document.getElementById(`${x.id}`);
 }
+*/
 
 // Funcion para filtrar los botones del menu dependiendo la categoria seleccionada
 
@@ -404,6 +323,7 @@ const agregarCarrito = (prodID) => {
   const item = menu.find((prod) => prod.id === prodID);
   carrito.push(item);
   actualizarCarrito();
+  detalleCompraHTML(cliente,item);
 };
 
 const eliminarDelCarrito = (prodID) => {
@@ -429,6 +349,35 @@ const actualizarCarrito = () => {
   });
   contadorCarrito.innerHTML = carrito.length;
   precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.precio, 0);
+};
+
+/*
+=============== 
+Eventos adicionales
+===============
+*/
+
+function detalleCompraHTML(
+  { nombre: razon, trabajo: { empresa, profesion } },
+  producto
+) {
+  let divDetalle = document.createElement("div");
+  divDetalle.innerHTML = `Cliente: ${razon}-
+                          Profesion: ${profesion} -
+                          Empresa: ${empresa}
+                          Producto: ${producto.nombre}
+                          Precio: ${producto.precio}`;
+  document.body.prepend(divDetalle);
+}
+
+//Objeto literal de informacion de cliente
+const cliente = {
+  nombre: "Chavo del 8",
+  estado: "exento",
+  trabajo: {
+    profesion: "Comediante",
+    empresa: "Telefe",
+  },
 };
 
 /*
