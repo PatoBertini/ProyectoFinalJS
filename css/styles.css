@@ -9,24 +9,16 @@ Variables
 :root {
   /* Paleta de color primario */
   --clr-primario-1: #fffbe6;
-  --clr-primario-2: #fff7cc;
-  --clr-primario-3: #fff3b3;
-  --clr-primario-4: #ffef99;
-  --clr-primario-5: #ffeb80;
-  --clr-primario-6: #ffe766;
-  --clr-primario-7: #ffe34d;
-  --clr-primario-8: #ffdf33;
-  --clr-primario-9: #ffdb19;
-  --clr-primario-10: #ffd700;
-  /* Paleta de color primario sombreado */
-  --clr-sombreado-1: #e6c200;
-  --clr-sombreado-2: #ccac00;
-  --clr-sombreado-3: #b39700;
-  --clr-sombreado-4: #998100;
-  --clr-sombreado-5: #806c00;
-  --clr-sombreado-6: #665600;
-  --clr-sombreado-7: #4d4100;
-  --clr-sombreado-8: #332b00;
+  --clr-primario-2: #8EF3F5;
+  --clr-primario-3: #4EEFF2;
+  --clr-primario-4: #39A0A2;
+  --clr-primario-5: #39E6E9;
+  --clr-primario-6: #13DDE1;
+  --clr-primario-7: #0BC7CA;
+  --clr-primario-8: #200FBC;
+  --clr-primario-9: #503FE8;
+  --clr-primario-10: #200FBC;
+
   --clr-grey-1: hsl(209, 61%, 16%);
   /* Color del body */
   --clr-body-1: hsl(0, 0%, 97%);
@@ -140,7 +132,7 @@ nav {
   transition: var(--transition);
 }
 .links a:hover {
-  color: var(--clr-primario-4);
+  color: var(--clr-primario-8);
   /* padding-left: 1.5rem; */
 }
 .social-icons {
@@ -192,7 +184,7 @@ Modal Nav-bar
 
 #boton-carrito {
   border: none;
-  color: red;
+  color: var(--clr-primario-9);
   font-size: 3rem;
   background-color: white;
   border-radius: 50%;
@@ -203,7 +195,7 @@ Modal Nav-bar
 #boton-carrito:hover {
   cursor: pointer;
   color: white;
-  background-color: red;
+  background-color: var(--clr-primario-9);
 }
 
 #boton-carrito:focus {
@@ -243,7 +235,7 @@ Modal Nav-bar
 }
 
 .modal-carrito h3 {
-  color: rgb(175, 21, 165);
+  color: var(--clr-primario-9);
   padding-bottom: 5px;
 }
 
@@ -403,17 +395,17 @@ Titulo Section
 
 .title h2 {
   font-size: 4rem;
-  color: rgb(191, 20, 20);
-  border: 3px solid red;
+  color: var(--clr-primario-9);
+  border: 3px solid var(--clr-primario-10);
   border-radius: 10px;
   padding: 10px;
   margin: 50px;
-  box-shadow: 1px 1px 20px 8px red;
+  box-shadow: 1px 1px 20px 8px var(--clr-primario-9);
   transition: all 1s;
 }
 
 .title h2:hover {
-  background-color: rgb(241, 117, 117);
+  background-color: rgb(119, 95, 240);
   color: whitesmoke;
 }
 
@@ -436,9 +428,9 @@ Sección Botones
 .filter-btn {
   width: 10rem;
   height: 2rem;
-  border: 2px red solid;
+  border: 2px var(--clr-primario-9) solid;
   border-radius: 15px;
-  color: red;
+  color: var(--clr-primario-9);
   font-weight: 900;
   font-size: 1em;
   box-shadow: 13px 26px 27px 1px rgba(0, 0, 0, 0.48);
@@ -449,7 +441,7 @@ Sección Botones
 
 .filter-btn:hover {
   color: whitesmoke;
-  background-color: rgb(241, 117, 117);
+  background-color: rgb(119, 95, 240);
 }
 
 /*
@@ -526,8 +518,8 @@ Botones cards menu
 .btn-compra {
   display: inline-block;
   padding: 0.8rem 3rem;
-  border: 0.2rem solid red;
-  color: red;
+  border: 0.2rem solid var(--clr-primario-9);
+  color: var(--clr-primario-9);
   cursor: pointer;
   font-size: 1.7rem;
   border-radius: 0.5rem;
@@ -544,7 +536,7 @@ Botones cards menu
   right: 0;
   width: 0%;
   height: 100%;
-  background: rgb(241, 117, 117);
+  background: rgb(119, 95, 240);
   transition: 0.3s linear;
   z-index: -1;
 }
