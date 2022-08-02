@@ -1,71 +1,9 @@
 /*
 =============== 
-Nav-Bar
-===============
-*/
-
-const navToggle = document.querySelector(".nav-toggle");
-const links = document.querySelector(".links");
-
-navToggle.addEventListener("click", function () {
-  if (links.classList.contains("show-links")) {
-    links.classList.remove("show-links");
-  } else {
-    links.classList.add("show-links");
-  }
-  // links.classList.toggle("show-links");
-});
-
-/*
-=============== 
-Modal Nav-bar
-===============
-*/
-
-//Variables
-const contenedorModal = document.getElementsByClassName("modal-contenedor")[0];
-const botonAbrir = document.getElementById("boton-carrito");
-const botonCerrar = document.getElementById("carritoCerrar");
-const modalCarrito = document.getElementsByClassName("modal-carrito")[0];
-
-botonAbrir.addEventListener("click", () => {
-  contenedorModal.classList.toggle("modal-active");
-});
-botonCerrar.addEventListener("click", () => {
-  contenedorModal.classList.toggle("modal-active");
-});
-
-contenedorModal.addEventListener("click", (event) => {
-  contenedorModal.classList.toggle("modal-active");
-});
-
-modalCarrito.addEventListener("click", (event) => {
-  event.stopPropagation(); //cuando clickeo sobre el modal se finaliza la propagacion del click a los elementos
-  //padre
-});
-
-/*
-=============== 
 Arrays tarjeta cards del menu
 ===============
 */
 
-class Plato {
-  constructor(id, nombre, categoria, precio, url, desc, cantidad) {
-    this.id = parseInt(id);
-    this.nombre = nombre;
-    this.categoria = categoria;
-    this.precio = parseFloat(precio);
-    this.img = url;
-    this.desc = desc;
-    this.cantidad = cantidad || 1;
-  }
-
-  addCantidad() {
-    this.cantidad++;
-  }
-}
-const menu = [];
 menu.push(
   new Plato(
     1,
@@ -218,167 +156,14 @@ menu.push(
   )
 );
 
-console.log(menu);
-
-// Elementos Padres
-const mainSection = document.querySelector(".box-container");
-const btnContainer = document.querySelector(".btn-container");
-
-let carrito = [];
-
 // Display todos los items cuando carga la pagina.
+
 // window.addEventListener("DOMContentLoaded", function () {
-//   displayMenuItems(menu)
+//   displayMenuItems(menu);
 // });
 
-// Agregamos el Array Menu para mostrar los productos de venta
+productosUI(menu, "box-container");
 
-menu.forEach((x) => {
-  const boxDiv = document.createElement("div");
-  boxDiv.classList.add("box");
-  boxDiv.innerHTML = `<img src=${x.img} alt="menu item" class="foto"/>
-  <div class="content">
-  <h3>${x.nombre}</h3>
-  <p>${x.desc}</p>
-  <button href="#" id="${x.id}" class="btn-compra">Agregar</button>
-  </div>`;
-  mainSection.appendChild(boxDiv);
-
-  const boton = document.getElementById(`${x.id}`);
-
-  boton.addEventListener("click", () => {
-    agregarCarrito(x.id);
-  });
-});
-
-/*
-
-// funcion para plasmar un array en la web
-function displayMenuItems(array) {
-  let displayMenu = array.map(function (x) {
-    return `<div class="box">
-  <img src=${x.img} alt="menu item" class="foto" />
-  <div class="content">
-  <h3>${x.nombre}</h3>
-  <p>${x.desc}</p>
-  <button href="#" id="${x.id}" class="btn-compra">Agregar</button>
-  </div>
-  </div>`;
-  });
-  displayMenu = displayMenu.join(""); // Se agregan comillas para sacar las comas del array.
-  mainSection.innerHTML = displayMenu;
-}
-*/
-
-// Funcion para filtrar los botones del menu dependiendo la categoria seleccionada
-
-const filterBtns = document.querySelectorAll(".filter-btn");
-
-filterBtns.forEach(function (btn) {
-  btn.addEventListener("click", function (e) {
-    console.log(e.currentTarget.dataset);
-    const categoria = e.currentTarget.dataset.id;
-    console.log(categoria);
-    const menuCategory = menu.filter(function (array) {
-      if (array.categoria === categoria) {
-        return array;
-      }
-    });
-    // console.log(menuCategory);
-    if (categoria === "Todos") {
-      return displayMenuItems(menu);
-    } else {
-      displayMenuItems(menuCategory);
-    }
-  });
-});
-
-/*
-=============== 
-Contenedor carrito
-===============
-*/
-
-// Funcion carrito
-
-const botonVaciar = document.getElementById("vaciar-carrito");
-const contenedorCarrito = document.getElementById("carrito-contenedor");
-const contadorCarrito = document.getElementById("contadorCarrito");
-const precioTotal = document.getElementById("precioTotal");
-
-document.addEventListener("DOMContentLoaded", () => {
-  if (localStorage.getItem("Carrito")) {
-    carrito = JSON.parse(localStorage.getItem("Carrito"));
-    actualizarCarrito();
-  }
-});
-
-botonVaciar.addEventListener("click", () => {
-  carrito.length = 0;
-  localStorage.removeItem("Carrito");
-  actualizarCarrito();
-});
-
-const agregarCarrito = (prodID) => {
-  const item = menu.find((prod) => prod.id === prodID);
-  carrito.push(item);
-  actualizarCarrito();
-  detalleCompraHTML(cliente,item);
-};
-
-const eliminarDelCarrito = (prodID) => {
-  const item = carrito.find((prod) => prod.id === prodID);
-  const indice = carrito.indexOf(item);
-  carrito.splice(indice, 1);
-  actualizarCarrito();
-};
-
-const actualizarCarrito = () => {
-  contenedorCarrito.innerHTML = "";
-  carrito.forEach((prod) => {
-    const div = document.createElement("div");
-    div.className = "productoEnCarrito";
-    div.innerHTML = `
-    <p class="item-carrito">${prod.nombre}</p>
-    <p class="item-carrito">Precio:$${prod.precio}</p>
-    <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
-    <button onclick="eliminarDelCarrito(${prod.id})" class="boton-eliminar"><i class="fas fa-trash-alt"></i></button>
-    `;
-    contenedorCarrito.appendChild(div);
-    localStorage.setItem("Carrito", JSON.stringify(carrito));
-  });
-  contadorCarrito.innerHTML = carrito.length;
-  precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.precio, 0);
-};
-
-/*
-=============== 
-Eventos adicionales
-===============
-*/
-
-function detalleCompraHTML(
-  { nombre: razon, trabajo: { empresa, profesion } },
-  producto
-) {
-  let divDetalle = document.createElement("div");
-  divDetalle.innerHTML = `Cliente: ${razon}-
-                          Profesion: ${profesion} -
-                          Empresa: ${empresa}
-                          Producto: ${producto.nombre}
-                          Precio: ${producto.precio}`;
-  document.body.prepend(divDetalle);
-}
-
-//Objeto literal de informacion de cliente
-const cliente = {
-  nombre: "Chavo del 8",
-  estado: "exento",
-  trabajo: {
-    profesion: "Comediante",
-    empresa: "Telefe",
-  },
-};
 
 /*
 =============== 
@@ -424,91 +209,10 @@ const dailyMenu = [
   },
 ];
 
-const nombre = document.getElementById("plato");
-const info = document.getElementById("info");
-const precio = document.getElementById("precio");
-const img = document.getElementById("plato-img");
-
-const prevBtn = document.querySelector(".prev-btn");
-const nextBtn = document.querySelector(".next-btn");
-const randomBtn = document.querySelector(".random-btn");
-
-// Setup starting item
-let currentItem = 0;
-
 // Setup load Pagina inicial
 
 window.addEventListener("DOMContentLoaded", function () {
   mostrarPlato();
 });
 
-// Mostrar plato basada en item
 
-function mostrarPlato() {
-  const item = dailyMenu[currentItem];
-  nombre.textContent = item.nombre;
-  info.textContent = item.info;
-  precio.textContent = item.precio;
-  img.src = item.img;
-}
-
-// La funcion mostrarPlato te va a mostrar el plato id: 0 del array dailyMenu por que esta seteado en la variable currentItem
-
-// Mostrar el plato siguiente
-
-nextBtn.addEventListener("click", function () {
-  currentItem++;
-  if (currentItem > dailyMenu.length - 1) {
-    currentItem = 0;
-  }
-  mostrarPlato();
-});
-
-// Mostrar el plato anterior
-
-prevBtn.addEventListener("click", function () {
-  currentItem--;
-  if (currentItem < 0) {
-    currentItem = dailyMenu.length - 1;
-  }
-  mostrarPlato();
-});
-
-// Mostrar un plato al azar
-
-randomBtn.addEventListener("click", function () {
-  currentItem = Math.floor(Math.random() * dailyMenu.length);
-  mostrarPlato();
-});
-
-/*
-=============== 
-Loader icono burger
-===============
-*/
-
-// function loader() {
-//   document.querySelector(".loader-container").classList.add("fade-out");
-// }
-
-// function fadeOut() {
-//   setInterval(loader, 3000);
-// }
-
-// window.onload = fadeOut();
-
-/*
-=============== 
-Swiper de foto 
-===============
-*/
-
-var swiper = new Swiper(".home-slider", {
-  grabCursor: true,
-  loop: true,
-  centeredSlides: true,
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
