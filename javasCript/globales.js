@@ -1,7 +1,4 @@
 // VARIABLES DE ACCESO GLOBAL
-// Nav-bar
-const navToggle = document.querySelector(".nav-toggle");
-const links = document.querySelector(".links");
 // Display Menu
 const menu = [];
 let carrito = [];
@@ -23,8 +20,9 @@ const img = document.getElementById("plato-img");
 // Carousel
 const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
-const randomBtn = document.querySelector(".random-btn");
 // Setup starting item
 let currentItem = 0;
 // Sweet Alert
 const confirmar = document.getElementById('confirmar');
+// Panels
+const panels = document.querySelectorAll('.panel')

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- Boostrap Css link -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -11,64 +12,100 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+
     <!-- Css link -->
     <link rel="stylesheet" href="./css/styles.css" />
+
     <!-- Swiper Css link -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
     />
+
     <!-- Toastify Css Link -->
     <link
       rel="stylesheet"
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
     />
+
     <title>Restaurant Menu</title>
   </head>
   <body>
-    <!-- Nav-Bar -->
-    <nav>
-      <div class="nav-center">
-        <!-- nav header -->
-        <div class="nav-header">
-          <img src="./img/payelogo.jpeg" class="logo" alt="logo" />
-          <button class="nav-toggle">
-            <i class="fas fa-bars"></i>
-          </button>
-        </div>
-
-        <!-- links -->
-        <ul class="links">
-          <li>
-            <a href="index.html">home</a>
-          </li>
-          <li>
-            <a href="about.html">Menu</a>
-          </li>
-          <li>
-            <a href="projects.html">especialidades</a>
-          </li>
-          <li>
-            <a href="contact.html">contacto</a>
-          </li>
-        </ul>
-        <button
-          id="boton-carrito"
-          data-bs-toggle="modal"
-          data-bs-target="#miModal"
+    <button
+        type="button"
+        
+        class="btn btn-danger btn-floating btn-lg"
+        id="btn-back-to-top"
         >
-          <i class="fas fa-shopping-cart"></i
-          ><span id="contadorCarrito">0</span>
-        </button>
-      </div>
-    </nav>
+    <i class="fas fa-arrow-up"></i>
+  </button>
+    <!-- Nav-Bar -->
+    <header id="header">
 
-    <!-- Modal Div -->
+      <nav class="navbar navbar-expand-md navbar-light bg-light ">
+
+        <div class="container">
+
+          <a class="navbar-brand" href="index.html"
+            ><img src="./img/payelogo.jpeg" class="logo" alt="logo"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav links mx-auto gap-3">
+              <li class="nav-item">
+                <a class="nav-link active" href="#header">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#menu">Menú</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#especialidades"
+                  >Especialidades</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="#reservar"
+                  >Reservar</a
+                >
+              </li>
+            </ul>
+
+          </div>
+
+          <button
+            id="boton-carrito"
+            data-bs-toggle="modal"
+            data-bs-target="#miModal"
+          >
+            <i class="fas fa-shopping-cart"></i
+            ><span id="contadorCarrito">0</span>
+          </button>
+
+        </div>
+      </nav>
+    </header>
+
+    <!-- Modal Div Carrito -->
 
     <div class="modal" id="miModal" tabindex="-1">
+
       <div class="modal-dialog modal-lg">
+        
         <div class="modal-content">
+
           <div class="modal-header">
             <h5 class="modal-title" id="modalSizeLabel">Carrito</h5>
             <button
@@ -77,6 +114,7 @@
               data-bs-dismiss="modal"
             ></button>
           </div>
+
           <div class="modal-body">
             <table class="table">
               <thead>
@@ -111,62 +149,144 @@
               Confirmar
             </button>
           </div>
+
         </div>
       </div>
     </div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+
       <div class="hero-div-text">
+
         <h2>Bienvenido a Nuestro portal</h2>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint nostrum
           autem laudantium natus perferendis eum.
         </p>
-        <button class="btn-neon">Pide Ya!</button>
+        <button href="#form" class="btn-neon">Pide Ya!</button>
+
       </div>
 
       <div class="hero-div-img">
         <img src="./img/b-1.jpeg" class="h-img" alt="hero" />
       </div>
+
     </section>
 
-    <!-- Titulo Section -->
-    <div class="container">
+    <!-- Menu Principal Section -->
+    <div class="container" id="menu">
       <!-- Titulo -->
       <div class="container-lg title text-center">
-        <h2>Nuestro Menu</h2>
-        <div class="underline"></div>
+        <h2>Menú</h2>
       </div>
 
       <!-- Botones de filtro -->
       <div class="btn-container">
+
         <button class="filter-btn" type="button" data-id="Todos">Todos</button>
+
         <button class="filter-btn" type="button" data-id="Entrantes">
           Entrantes
         </button>
+
         <button class="filter-btn" type="button" data-id="Plato Principal">
           Plato Principal
         </button>
+
         <button class="filter-btn" type="button" data-id="Postres">
           Postres
         </button>
+
       </div>
 
       <!-- Menu -->
-
       <div class="container">
         <div
           class="row row-cols-sm-2 row-cols-md-3 box-container"
           id="box-container"
-        ></div>
+        >
+          <!-- Menu traido desde Js -->
+        </div>
       </div>
     </div>
 
+    <!-- Panel de imagenes -->
+    <div class="panels">
+
+      <div class="panel panel1">
+        <p>Hey</p>
+        <p>Viaja</p>
+        <p>Aqui</p>
+      </div>
+
+      <div class="panel panel2">
+        <p>Ven</p>
+        <p>En</p>
+        <p>Bici</p>
+      </div>
+
+      <div class="panel panel3">
+        <p>Vive</p>
+        <p>El</p>
+        <p>Momento</p>
+      </div>
+
+      <div class="panel panel4">
+        <p>Tienes</p>
+        <p>tiempo</p>
+        <p>Siempre</p>
+      </div>
+
+      <div class="panel panel5">
+        <p>Life</p>
+        <p>:)</p>
+        <p>Style</p>
+      </div>
+
+    </div>
+
+    <!-- Nuestras Especialidades -->
+    <!-- Titulo -->
+    <section class="daily-menu" id="especialidades">
+      <div class="d-title">
+        <h2>Nuestras Especialidades</h2>
+        <div class="d-underline"></div>
+      </div>
+
+      <!-- Menu -->
+      <div class="menu-conteiner">
+
+        <div class="img-container">
+          <img src="#" alt="" id="plato-img" />
+        </div>
+
+        <h2 id="plato"></h2>
+        <p id="info"></p>
+        <p id="precio"></p>
+
+        <!-- Botones -->
+        <div class="button-container">
+
+          <button class="prev-btn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+
+          <button class="next-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+
+        </div>
+      </div>
+    </section>
+
     <!-- Slider Section -->
     <section class="home" id="home">
+
       <div class="swiper home-slider">
+
         <div class="swiper-wrapper">
+
           <div class="swiper-slide slide d-1">
             <div class="content">
               <h2>Viaja en el tiempo</h2>
@@ -188,6 +308,7 @@
               </h2>
             </div>
           </div>
+
         </div>
 
         <div class="swiper-button-next"></div>
@@ -195,65 +316,150 @@
       </div>
     </section>
 
-    <!-- Nuestras Especialidades -->
-    <!-- Titulo -->
-    <section class="daily-menu">
-      <div class="d-title">
-        <h2>Nuestras Especialidades</h2>
-        <div class="d-underline"></div>
-      </div>
 
-      <!-- Menu -->
-      <div class="menu-conteiner">
-        <div class="img-container">
-          <img src="#" alt="" id="plato-img" />
-        </div>
-        <h2 id="plato"></h2>
-        <p id="info"></p>
-        <p id="precio"></p>
-        <!-- Botones -->
-        <div class="button-container">
-          <button class="prev-btn">
-            <i class="fas fa-chevron-left"></i>
-          </button>
-          <button class="next-btn">
-            <i class="fas fa-chevron-right"></i>
-          </button>
-        </div>
-        <!-- random button -->
-        <button class="random-btn">Ramdom plato</button>
-      </div>
+    <!-- Form Section -->
+
+    <section class="form" id="reservar">
+
+      <h2 class="f-text">Realiza Tu Pedido</h2>
+      
+        <img
+          class="f-image"
+          src="https://images.unsplash.com/photo-1511421616335-5a9846f1afcb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2232&q=80"
+          alt=""
+        />
+
+        <div class="f-content">
+
+        <form class="row g-5 p-2 needs-validation" novalidate>
+
+          <div class="col-lg-4 fs-5">
+            <label for="validationCustom01" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="Escriba su nombre" required>
+            <div class="valid-feedback">
+              Dato valido!
+            </div>
+             <div class="invalid-feedback">
+              Ingrese su nombre
+            </div>
+          </div>
+          
+          <div class="col-lg-4 fs-5">
+            <label for="validationCustom02" class="form-label">Telefono</label>
+            <input type="number" class="form-control" id="validationCustom02" placeholder="3416 453 231" required>
+            <div class="valid-feedback">
+              Dato valido!
+            </div>
+            <div class="invalid-feedback">
+              Ingrese su telefono
+            </div>
+          </div>
+
+          <div class="col-lg-4 fs-5">
+            <label for="validationCustom03" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="validationCustom03" required>
+            <div class="invalid-feedback">
+              No has ingresado tu dirección
+            </div>
+          </div>
+
+          <div class="col-lg-4 fs-5">
+            <label for="validationCustom04" class="form-label">Desea envio a domicilio o retiro en tienda?</label>
+            <select class="form-select" id="validationCustom04" required>
+              <option >Delivery</option>
+              <option>Recogida en tienda</option>
+            </select>
+          </div>
+
+          <div class="col-lg-8 fs-5">          
+              <label for="validationCustom05" class="form-label">
+                Realice su pedido
+              </label>
+              <textarea style="height: 190px" class="form-control" id="validationTextarea" placeholder="Haga su pedido aqui" required></textarea>
+              <div class="invalid-feedback">
+                Antes de continuar, realice su pedido por favor.
+              </div>          
+          </div>
+
+          <div class="col-12 fs-5">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+              <label class="form-check-label" for="invalidCheck">
+                Acepto termino y condiciones
+              </label>
+              <div class="invalid-feedback">
+                Debes aceptar los terminos y condiciones antes de continuar
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-dark" type="submit">Realizar pedido</button>
+          </div>
+
+        </form>
+
     </section>
+    <!-- Footer -->
+
+<footer class="footer">
+
+  <div class="derechos">
+    <p>&copy; Pato2022</p>
+  </div>
+
+  <div class="iconos">
+    <div>
+      <i class="fa-brands fa-facebook"></i>
+    </div>
+    <div>
+      <i class="fa-brands fa-twitter"></i>
+    </div>
+    <div>
+      <i class="fa-solid fa-envelope"></i>
+    </div>
+  </div>
+
+</footer>
+
+
 
     <!-- loader  -->
     <!-- <div class="loader-container">
       <img src="img/burger.gif" alt="" />
     </div> -->
+
     <!-- Toastify Script -->
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/toastify-js"
     ></script>
+
     <!-- Boostrap Js -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+
     <!-- Swiper Script -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
     <!-- Awesome icons -->
     <script
       src="https://kit.fontawesome.com/0149485272.js"
       crossorigin="anonymous"
     ></script>
+
     <!-- Sweet Alert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <!-- Javascript  -->
     <script src="./javasCript/globales.js"></script>
     <script src="./javasCript/funciones.js"></script>
     <script src="./javasCript/producto.js"></script>
     <script src="./javasCript/main.js"></script>
     <script src="./javasCript/interfaz.js"></script>
+
   </body>
 </html>

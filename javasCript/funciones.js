@@ -1,20 +1,5 @@
 /*
 =============== 
-Nav-Bar
-===============
-*/
-
-navToggle.addEventListener("click", function () {
-  if (links.classList.contains("show-links")) {
-    links.classList.remove("show-links");
-  } else {
-    links.classList.add("show-links");
-  }
-  // links.classList.toggle("show-links");
-});
-
-/*
-=============== 
 Arrays tarjeta cards del menu
 ===============
 */
@@ -140,12 +125,12 @@ function seleccionarItem() {
       localStorage.setItem("Carrito", JSON.stringify(carrito));
       actualizarCarrito(carrito);
       // Toastify({
-      //   text: `Se ha agregado el producto al carrito`,                                
+      //   text: `Se ha agregado el producto al carrito`,
       //   duration: 3000,
       //   gravity: "bottom",
       //   style: {
       //           background: "linear-gradient(to right, #00b09b, #96c93d)",
-      //         }                                
+      //         }
       //   }).showToast();
     });
   }
@@ -172,8 +157,6 @@ const actualizarCarrito = () => {
   contadorCarrito.innerHTML = carrito.length;
   precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.precio, 0);
 };
-
-
 
 botonVaciar.addEventListener("click", () => {
   carrito.length = 0;
@@ -224,12 +207,6 @@ prevBtn.addEventListener("click", function () {
   mostrarPlato();
 });
 
-// Mostrar un plato al azar
-
-randomBtn.addEventListener("click", function () {
-  currentItem = Math.floor(Math.random() * dailyMenu.length);
-  mostrarPlato();
-});
 
 /*
 =============== 
@@ -237,15 +214,15 @@ Loader icono burger
 ===============
 */
 
-function loader() {
-  document.querySelector(".loader-container").classList.add("fade-out");
-}
+// function loader() {
+//   document.querySelector(".loader-container").classList.add("fade-out");
+// }
 
-function fadeOut() {
-  setInterval(loader, 3000);
-}
+// function fadeOut() {
+//   setInterval(loader, 3000);
+// }
 
-window.onload = fadeOut();
+// window.onload = fadeOut();
 
 /*
 =============== 
@@ -263,14 +240,97 @@ var swiper = new Swiper(".home-slider", {
   },
 });
 
-
 //Boton confirmar carrito
-confirmar.onclick= () => {
-
+confirmar.onclick = () => {
   //Muestro un mensaje de alerta con sweetAlert
   swal({
-    title: "Felicidades! Haz realizado tu compra!",
-    text: "Un cadete esta de camino!",
-    icon: "success",
+    title: "Estas seguro que desas realizar la compra?",
+    text: "O deseas agregar mas articulos a tu carrito?",
+    icon: "warning",
+    buttons: true,
+  }).then((ok) => {
+    if (ok) {
+      swal("Tu pedido ha sido realizado! Un cadete esta de camino!", {
+        icon: "success",
+      });
+    } else {
+      swal("Vuelve al menu y compra mas comida");
+    }
   });
+};
+
+/*
+=============== 
+Panels
+===============
+*/
+
+function toggleOpen() {
+  this.classList.toggle("open");
+}
+
+function toggleActive(e) {
+  console.log(e.propertyName);
+  if (e.propertyName.includes('flex')) {
+    this.classList.toggle('open-active')
+  }
+}
+
+panels.forEach((panel) => panel.addEventListener("click", toggleOpen));
+panels.forEach((panel) =>
+  panel.addEventListener("transitionend", toggleActive)
+);
+
+/*
+=============== 
+Validacion formulario de boostrap
+===============
+*/
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+
+
+//Get the button
+let mybutton = document.getElementById("btn-back-to-top");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  if (
+    document.body.scrollTop > 20 ||
+    document.documentElement.scrollTop > 20
+  ) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+// When the user clicks on the button, scroll to the top of the document
+mybutton.addEventListener("click", backToTop);
+
+function backToTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
 }
