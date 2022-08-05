@@ -164,7 +164,6 @@ menu.push(
 
 productosUI(menu, "box-container");
 
-
 /*
 =============== 
 Nuestras especialidades menu
@@ -214,5 +213,3 @@ const dailyMenu = [
 window.addEventListener("DOMContentLoaded", function () {
   mostrarPlato();
 });
-
-

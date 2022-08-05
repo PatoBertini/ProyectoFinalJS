@@ -23,6 +23,6 @@ const nextBtn = document.querySelector(".next-btn");
 // Setup starting item
 let currentItem = 0;
 // Sweet Alert
-const confirmar = document.getElementById('confirmar');
+const confirmar = document.getElementById("confirmar");
 // Panels
-const panels = document.querySelectorAll('.panel')
+const panels = document.querySelectorAll(".panel");

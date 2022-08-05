@@ -124,14 +124,14 @@ function seleccionarItem() {
       }
       localStorage.setItem("Carrito", JSON.stringify(carrito));
       actualizarCarrito(carrito);
-      // Toastify({
-      //   text: `Se ha agregado el producto al carrito`,
-      //   duration: 3000,
-      //   gravity: "bottom",
-      //   style: {
-      //           background: "linear-gradient(to right, #00b09b, #96c93d)",
-      //         }
-      //   }).showToast();
+      Toastify({
+        text: `Se ha agregado: ${existe.nombre} al carrito`,
+        duration: 3000,
+        gravity: "bottom",
+        style: {
+          background: "linear-gradient(to right, #943126, #fa8072)",
+        },
+      }).showToast();
     });
   }
 }
@@ -207,7 +207,6 @@ prevBtn.addEventListener("click", function () {
   mostrarPlato();
 });
 
-
 /*
 =============== 
 Loader icono burger
@@ -271,8 +270,8 @@ function toggleOpen() {
 
 function toggleActive(e) {
   console.log(e.propertyName);
-  if (e.propertyName.includes('flex')) {
-    this.classList.toggle('open-active')
+  if (e.propertyName.includes("flex")) {
+    this.classList.toggle("open-active");
   }
 }
 
@@ -289,25 +288,27 @@ Validacion formulario de boostrap
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
-  'use strict'
+  "use strict";
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
+  var forms = document.querySelectorAll(".needs-validation");
 
   // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
+  Array.prototype.slice.call(forms).forEach(function (form) {
+    form.addEventListener(
+      "submit",
+      function (event) {
         if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
+          event.preventDefault();
+          event.stopPropagation();
         }
 
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
-
+        form.classList.add("was-validated");
+      },
+      false
+    );
+  });
+})();
 
 //Get the button
 let mybutton = document.getElementById("btn-back-to-top");
@@ -318,10 +319,7 @@ window.onscroll = function () {
 };
 
 function scrollFunction() {
-  if (
-    document.body.scrollTop > 20 ||
-    document.documentElement.scrollTop > 20
-  ) {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     mybutton.style.display = "block";
   } else {
     mybutton.style.display = "none";
