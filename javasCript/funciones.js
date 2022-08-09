@@ -171,6 +171,56 @@ const eliminarDelCarrito = (prodID) => {
   actualizarCarrito();
 };
 
+function vaciarCarrito() {
+  localStorage.clear();
+  carrito.splice(0, carrito.length);
+  actualizarCarrito();
+}
+
+// Peticion GET fetch
+peticion = fetch("https://reqres.in/api/unknown/2");
+
+peticion.then((res) => res.json()).then((res) => console.log(res));
+
+console.log(peticion);
+
+// Peticion POST fetch
+function enviarDatos(lista) {
+  fetch("https://reqres.in/api/users", {
+    method: "POST",
+    body: JSON.stringify({ carrito: lista, userID: 123 }),
+    headers: { "Content-type": "application/json; charset=UTF-8" },
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((datos) => {
+      swal(`Tu nro de pedido es el  ${datos.id}! Un cadete esta de camino!`, {
+        icon: "success",
+      });
+      vaciarCarrito();
+    })
+    .catch((datos) => {
+      swal("Tu pedido ha sido rechazado, saldo insuficiente!", {
+        icon: "warning",
+      });
+    });
+}
+
+
+
+//Funcion de GET con async await
+async function cargarDatos() {
+  //Se ocupa la palabra await para simular sincronia
+  const pedido= await fetch('https://ghibliapi.herokuapp.com/films');
+  const datosJson= await pedido.json();
+  for (const generico of datosJson) {
+          productos.push(new Plato(generico.id, generico.title, generico.description, generico.precio, generico.image, generico.cantidad))
+        }
+        productosUI(productos, 'box-container');
+}
+
+
 /*
 =============== 
 Seccion Nuestras Especialidades
@@ -184,8 +234,6 @@ function mostrarPlato() {
   precio.textContent = item.precio;
   img.src = item.img;
 }
-
-// La funcion mostrarPlato te va a mostrar el plato id: 0 del array dailyMenu por que esta seteado en la variable currentItem
 
 // Mostrar el plato siguiente
 
@@ -209,22 +257,6 @@ prevBtn.addEventListener("click", function () {
 
 /*
 =============== 
-Loader icono burger
-===============
-*/
-
-// function loader() {
-//   document.querySelector(".loader-container").classList.add("fade-out");
-// }
-
-// function fadeOut() {
-//   setInterval(loader, 3000);
-// }
-
-// window.onload = fadeOut();
-
-/*
-=============== 
 Swiper de foto 
 ===============
 */
@@ -241,21 +273,7 @@ var swiper = new Swiper(".home-slider", {
 
 //Boton confirmar carrito
 confirmar.onclick = () => {
-  //Muestro un mensaje de alerta con sweetAlert
-  swal({
-    title: "Estas seguro que desas realizar la compra?",
-    text: "O deseas agregar mas articulos a tu carrito?",
-    icon: "warning",
-    buttons: true,
-  }).then((ok) => {
-    if (ok) {
-      swal("Tu pedido ha sido realizado! Un cadete esta de camino!", {
-        icon: "success",
-      });
-    } else {
-      swal("Vuelve al menu y compra mas comida");
-    }
-  });
+  enviarDatos();
 };
 
 /*
@@ -310,6 +328,12 @@ Validacion formulario de boostrap
   });
 })();
 
+/*
+=============== 
+Red button scroll top
+===============
+*/
+
 //Get the button
 let mybutton = document.getElementById("btn-back-to-top");
 
@@ -332,3 +356,19 @@ function backToTop() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
+
+/*
+=============== 
+Loader icono burger
+===============
+*/
+
+// function loader() {
+//   document.querySelector(".loader-container").classList.add("fade-out");
+// }
+
+// function fadeOut() {
+//   setInterval(loader, 3000);
+// }
+
+// window.onload = fadeOut();

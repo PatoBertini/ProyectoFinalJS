@@ -162,7 +162,10 @@ menu.push(
 //   displayMenuItems(menu);
 // });
 
-productosUI(menu, "box-container");
+// productosUI(menu, "box-container");
+cargarDatos()
+
+
 
 /*
 =============== 
