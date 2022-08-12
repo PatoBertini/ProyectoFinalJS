@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "nombre": "Papas con cheddar y bacon",
+    "categoria": "Entrantes",
+    "precio": 450,
+    "img": "./img/displayMenu/papas.jpg",
+    "desc": "Papas fritas con salsa casera de cheddar y una lluvia de bacon"
+  },
+  {
+    "id": 2,
+    "nombre": "Mix de croquetas fritas",
+    "categoria": "Entrantes",
+    "precio": "750",
+    "img": "./img/displayMenu/croquetas.jpeg",
+    "desc": "Disfruta estas 6 croquetas de bacalao, jamon y queso"
+  },
+  {
+    "id": 3,
+    "nombre": "Plovoleta a la fugazzeta",
+    "categoria": "Entrantes",
+    "precio": "420",
+    "img": "./img/displayMenu/provoleta.jpeg",
+    "desc": "Deliciosa provoleta cubierta por cebolla pochada en miel y cerveza"
+  },
+  {
+    "id": 4,
+    "nombre": "Ensalada Waldorf",
+    "categoria": "Plato Principal",
+    "precio": "450",
+    "img": "./img/displayMenu/ensalada.jpg",
+    "desc": "Ensalada Waldorf con mix de verduras y frutas acompañada con nuestra salsa de la casa"
+  },
+  {
+    "id": 5,
+    "nombre": "Smokey Onion Burger",
+    "categoria": "Plato Principal",
+    "precio": "980 ",
+    "img": "./img/h-3.jpg",
+    "desc": "Hamburguesa de la casa con Smokey Onion y Honey Mustard"
+  },
+  {
+    "id": 6,
+    "nombre": "Brochette Estilo Oriental",
+    "categoria": "Entrantes",
+    "precio": "820",
+    "img": "./img/displayMenu/brochetteIndian.jpg",
+    "desc": "Brochettes de pollo estilo oriental con arroz thai y chimichurri"
+  },
+  {
+    "id": 7,
+    "nombre": "Briscket Al Ajillo",
+    "categoria": "Plato Principal",
+    "precio": "1980",
+    "img": "./img/displayMenu/lomo.jpg",
+    "desc": "estro famoso Brisket de 1000 Grms marinado al vacio con ajo y romero, cocinado a baja temperatura y sellado a la leña, acompañado con papas fritas"
+  },
+  {
+    "id": 8,
+    "nombre": "Parrillada a las brasas",
+    "categoria": "Plato Principal",
+    "precio": "1820",
+    "img": "./img/displayMenu/parrillada.jpg",
+    "desc": "Nuestra tradicional Parrillada para compartir acompañado de nuestras tradicionales salsas caseras"
+  },
+  {
+    "id": 9,
+    "nombre": "Salmon Estilo Oriental",
+    "categoria": "Plato Principal",
+    "precio": "1820 ",
+    "img": "./img/displayMenu/salmonOriental.jpg",
+    "desc": "Salmon estilo oriental acompañado de nuestra especial salsa Yakitori y wok de verduras"
+  },
+  {
+    "id": 10,
+    "nombre": "Brownie con helado",
+    "categoria": "Postres",
+    "precio": "650",
+    "img": "./img/displayMenu/brownieSolo.jpg",
+    "desc": "Nuestro famoso brownie con helado de americana"
+  },
+  {
+    "id": 11,
+    "nombre": "Banana Pancakes",
+    "categoria": "Postres",
+    "precio": "600",
+    "img": "./img/displayMenu/bananaPancake.jpg",
+    "desc": "Torre de wafles cubiertos por una lluvia de banana y glaseado de sirope de arce"
+  },
+  {
+    "id": 12,
+    "nombre": "Berrys Pancakes",
+    "categoria": "Postres",
+    "precio": " 980",
+    "img": "./img/displayMenu/berryPancake.jpg",
+    "desc": "Torre de wafles rellenos de arandanos y bananas cubiertos por un almibar de frutos rojos"
+  },
+  {
+    "id": 13,
+    "nombre": "Mousse de chocolate",
+    "categoria": "Postres",
+    "precio": "880",
+    "img": "./img/displayMenu/postreChocolate.jpg",
+    "desc": "Nuestro famoso Mousse de chocolate cubierto con un glaseado de frutos rojos"
+  },
+  {
+    "id": 14,
+    "nombre": "CheeseCake de Frutos Rojos",
+    "categoria": "Postres",
+    "precio": "760 ",
+    "img": "./img/displayMenu/postreFrutilla.jpg",
+    "desc": "TorTorta Cheesecake de frutos rojos"
+  },
+  {
+    "id": 15,
+    "nombre": "Torta Tres Leches",
+    "categoria": "Postres",
+    "precio": "990 ",
+    "img": "./img/displayMenu/postreTresLeches.jpg",
+    "desc": "Nuestro especial Torta Tres Leches relleno de diferente mousses"
+  }
+]

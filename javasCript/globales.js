@@ -1,6 +1,5 @@
 // VARIABLES DE ACCESO GLOBAL
 // Display Menu
-const productos = [];
 const menu = [];
 let carrito = [];
 // Elementos Padres Display Menu

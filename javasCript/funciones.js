@@ -1,12 +1,9 @@
 /*
 =============== 
-Arrays tarjeta cards del menu
+Funcion display productos menu
 ===============
 */
 
-// 3 formas distintas para  agregar el Array Menu para mostrar los productos de venta
-
-// Opcion 1
 function productosUI(menu, id) {
   let productosMenu = document.getElementById(id);
   productosMenu.innerHTML = "";
@@ -19,6 +16,7 @@ function productosUI(menu, id) {
           <div class="card-body content">
             <h5 class="card-title">${producto.nombre}</h5>
             <p class="card-text">${producto.desc}.</p>
+            <p class="card-text">${producto.precio} $</p>
             <button href="#" id="${producto.id}" class="btn-compra">Comprar</button>
           </div>
           </div>`;
@@ -27,55 +25,35 @@ function productosUI(menu, id) {
   seleccionarItem();
 }
 
-/*
-
-// Opcion 2
-menu.forEach((x) => {
-  const boxDiv = document.createElement("div");
-  boxDiv.classList.add("card");
-  boxDiv.innerHTML = `
-    <div class="col text-center  p-1 mb-1">
-    <img src=${x.img} class="card-img-top foto" alt="Menu item">
-    <div class="card-body content">
-      <h5 class="card-title">${x.nombre}</h5>
-      <p class="card-text">${x.desc}.</p>
-      <button href="#" id="${x.id}" class="btn-compra">Comprar</button>
-    </div>
-    </div>`;
-  mainSection.appendChild(boxDiv);
-
-  const boton = document.getElementById(`${x.id}`);
-
-  boton.addEventListener("click", () => {
-    agregarCarrito(x.id);
+fetch("javasCript/data.json")
+  .then((respuesta) => {
+    return respuesta.json();
+  })
+  .then((datos) => {
+    for (const generico of datos) {
+      menu.push(
+        new Plato(
+          generico.id,
+          generico.nombre,
+          generico.categoria,
+          generico.precio,
+          generico.img,
+          generico.desc,
+          generico.cantidad
+        )
+      );
+    }
+    productosUI(menu, "box-container");
+  })
+  .catch((mensaje) => {
+    console.log(mensaje);
   });
-});
-
-
-// Opcion 3
-function displayMenuItems(array) {
-  let displayMenu = array.map(function (x) {
-    return `  <div class="col text-center  p-1 mb-1">
-      <img src=${x.img} class="card-img-top foto" alt="Menu item">
-      <div class="card-body content">
-        <h5 class="card-title">${x.nombre}</h5>
-        <p class="card-text">${x.desc}.</p>
-        <button href="#" id="${x.id}" class="btn-compra">Comprar</button>
-      </div>
-      </div>`;
-  });
-  displayMenu = displayMenu.join(""); // Se agregan comillas para sacar las comas del array.
-  mainSection.innerHTML = displayMenu;
-}
-*/
 
 /*
 =============== 
 Botones Filtro del menu
 ===============
 */
-
-// Funcion para filtrar los botones del menu dependiendo la categoria seleccionada
 
 filterBtns.forEach(function (btn) {
   btn.addEventListener("click", function (e) {
@@ -89,9 +67,9 @@ filterBtns.forEach(function (btn) {
     });
     // console.log(menuCategory);
     if (categoria === "Todos") {
-      return displayMenuItems(menu);
+      return productosUI(menu, "box-container");
     } else {
-      displayMenuItems(menuCategory);
+      productosUI(menuCategory, "box-container");
     }
   });
 });
@@ -177,6 +155,11 @@ function vaciarCarrito() {
   actualizarCarrito();
 }
 
+//Boton confirmar carrito
+confirmar.onclick = () => {
+  enviarDatos();
+};
+
 // Peticion GET fetch
 peticion = fetch("https://reqres.in/api/unknown/2");
 
@@ -207,25 +190,15 @@ function enviarDatos(lista) {
     });
 }
 
-
-
-//Funcion de GET con async await
-async function cargarDatos() {
-  //Se ocupa la palabra await para simular sincronia
-  const pedido= await fetch('https://ghibliapi.herokuapp.com/films');
-  const datosJson= await pedido.json();
-  for (const generico of datosJson) {
-          productos.push(new Plato(generico.id, generico.title, generico.description, generico.precio, generico.image, generico.cantidad))
-        }
-        productosUI(productos, 'box-container');
-}
-
-
 /*
 =============== 
 Seccion Nuestras Especialidades
 ===============
 */
+
+window.addEventListener("DOMContentLoaded", function () {
+  mostrarPlato();
+});
 
 function mostrarPlato() {
   const item = dailyMenu[currentItem];
@@ -271,11 +244,6 @@ var swiper = new Swiper(".home-slider", {
   },
 });
 
-//Boton confirmar carrito
-confirmar.onclick = () => {
-  enviarDatos();
-};
-
 /*
 =============== 
 Panels
@@ -304,14 +272,11 @@ Validacion formulario de boostrap
 ===============
 */
 
-// Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
   "use strict";
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
   var forms = document.querySelectorAll(".needs-validation");
 
-  // Loop over them and prevent submission
   Array.prototype.slice.call(forms).forEach(function (form) {
     form.addEventListener(
       "submit",
@@ -330,14 +295,12 @@ Validacion formulario de boostrap
 
 /*
 =============== 
-Red button scroll top
+Boton rojo para scrolliar hacia arriba
 ===============
 */
 
-//Get the button
 let mybutton = document.getElementById("btn-back-to-top");
 
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function () {
   scrollFunction();
 };
@@ -349,7 +312,7 @@ function scrollFunction() {
     mybutton.style.display = "none";
   }
 }
-// When the user clicks on the button, scroll to the top of the document
+
 mybutton.addEventListener("click", backToTop);
 
 function backToTop() {
@@ -363,12 +326,12 @@ Loader icono burger
 ===============
 */
 
-// function loader() {
-//   document.querySelector(".loader-container").classList.add("fade-out");
-// }
+function loader() {
+  document.querySelector(".loader-container").classList.add("fade-out");
+}
 
-// function fadeOut() {
-//   setInterval(loader, 3000);
-// }
+function fadeOut() {
+  setInterval(loader, 3000);
+}
 
-// window.onload = fadeOut();
+window.onload = fadeOut();

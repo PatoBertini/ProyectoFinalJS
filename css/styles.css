@@ -739,7 +739,7 @@ Loader container
   top: 0;
   left: 0;
   z-index: 10000;
-  background: rgb(229, 229, 13);
+  background-image: url(../img/giphy.gif);
   display: flex;
   align-items: center;
   justify-content: center;
